@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- MANIFIESTO-->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- SERVICE WORKER-->
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+             navigator.serviceWorker
+            .register("/serviceWorker.js")
+            .then(res => console.log("service worker registered"))
+            .catch(err => console.log("service worker not registered", err))
+        })
+    }
+    </script>
+
+    <title>MinervaConnect</title>
+  </head>
+  <body>
+    ESTO ES LA PWA: INICIO
+  </body>
+</html>
