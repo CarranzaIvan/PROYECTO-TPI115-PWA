@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
 
     <!-- MANIFIESTO-->
     <link rel="manifest" href="manifest.json" />
@@ -23,6 +24,34 @@
     <title>MinervaConnect</title>
   </head>
   <body>
-    ESTO ES LA PWA: INICIO
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tarjetero de titulos -->
+        <h2 class="active" onclick="activateTab(this)"> Iniciar Sesión </h2>
+        <h2 class="inactive underlineHover" onclick="activateTab(this)">Registrar Usuario </h2>
+    
+        <!-- Icono-->
+        <div class="fadeIn first">
+          <img src="./Recursos/logoImagen.png" id="icon" alt="User Icon" />
+        </div>
+    
+        <!-- Formulario de iniciar sesión -->
+        <form>
+          <!-- Entrada de Usuario -->
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario/Carné">
+          <!-- Salida de Usuario -->
+          <input type="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+          <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+    
+        <!-- Recordar contraseña -->
+        <div id="formFooter">
+          <a class="underlineHover" href="#">Olvidaste la contraseña?</a>
+        </div>
+    
+      </div>
+    </div>
+
+
   </body>
 </html>

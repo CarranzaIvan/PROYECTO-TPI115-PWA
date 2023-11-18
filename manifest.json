@@ -1,6 +1,6 @@
 {
     "name": "MinervaConnect",
-    "short_name": "MinervaChat",
+    "short_name": "MinervaConnect",
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#fdfdfd",
