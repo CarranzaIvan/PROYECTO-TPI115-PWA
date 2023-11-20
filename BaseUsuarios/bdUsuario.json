@@ -1,0 +1,20 @@
+{
+  "users":{
+    "CS21024":{
+      "carne": "CS21024",
+      "nombre": "Iván Alexander",
+      "apellido": "Carranza Sánchez",
+      "email": "cs21024@ues.edu.sv",
+      "contrasena": "277804",
+      "fechaInicio": "18/11/2023"
+    },
+    "MS16061":{
+      "carne": "MS16061",
+      "nombre": "Gissela Vanessa",
+      "apellido": "Mikelly Sánchez",
+      "email": "ms16061@ues.edu.sv",
+      "contrasena": "soyGiss",
+      "fechaInicio": "19/11/2023"
+    }
+  }
+}

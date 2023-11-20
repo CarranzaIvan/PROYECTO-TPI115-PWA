@@ -30,6 +30,16 @@ h2 {
   color: #cccccc;
 }
 
+/*Para el parrafo de error*/
+p{
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #000000;
+}
 
 /*Cuadro de inicio y salida*/
 .wrapper {
@@ -229,7 +239,7 @@ input[type=text]:placeholder , input[type=password]:placeholder{
   animation-delay: 1s;
 }
 
-/* Simple CSS3 Fade-in Animation */
+/* Simple CSS3 Fade-in Animación */
 .underlineHover:after {
   display: block;
   left: 0;

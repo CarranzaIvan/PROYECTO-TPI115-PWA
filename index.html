@@ -7,28 +7,33 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- MANIFIESTO-->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <!-- Logo-->
+    <link rel="icon" href="./Recursos/pantallaInicio.ico" type="image/x-icon">
 
     <!-- SERVICE WORKER-->
     <script>
         if ("serviceWorker" in navigator) {
-            window.addEventListener("load", function() {
-             navigator.serviceWorker
-            .register("/serviceWorker.js")
-            .then(res => console.log("service worker registered"))
-            .catch(err => console.log("service worker not registered", err))
-        })
-    }
+          window.addEventListener("load", function() {
+            navigator.serviceWorker
+              .register("/serviceWorker.js")
+              .then(res => console.log("service worker registered"))
+              .catch(err => console.log("service worker not registered", err))
+          })
+        }
     </script>
 
     <title>MinervaConnect</title>
+    <!-- Funcionalidad-->
+    <script src="app.js"></script>
   </head>
   <body>
     <div class="wrapper fadeInDown">
       <div id="formContent">
         <!-- Tarjetero de titulos -->
-        <h2 class="active" onclick="activateTab(this)"> Iniciar Sesión </h2>
-        <h2 class="inactive underlineHover" onclick="activateTab(this)">Registrar Usuario </h2>
+        <h2 class="active" id="Iniciar" onclick="activateTab(this)"> Iniciar Sesión </h2>
+        <h2 class="inactive underlineHover" id="Registrar" onclick="activateTab(this)">Registrar Usuario </h2>
     
         <!-- Icono-->
         <div class="fadeIn first">
@@ -36,22 +41,47 @@
         </div>
     
         <!-- Formulario de iniciar sesión -->
-        <form>
+        <form id = "formulario">
           <!-- Entrada de Usuario -->
           <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario/Carné">
           <!-- Salida de Usuario -->
           <input type="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
-          <input type="submit" class="fadeIn fourth" value="Log In">
+          <input type="button" class="fadeIn fourth" value="Iniciar Sesión" id="botonIniciar" onclick="validarCampos(this)">
         </form>
+
+        <!-- CONEXIÓN A BASE DE DATOS -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script type="module">
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+        
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+            apiKey: "AIzaSyA9VGDK9U30N0ntAz3AI5U_8LRfkoKSK6E",
+            authDomain: "minervaconnect-d49cc.firebaseapp.com",
+            databaseURL: "https://minervaconnect-d49cc-default-rtdb.firebaseio.com",
+            projectId: "minervaconnect-d49cc",
+            storageBucket: "minervaconnect-d49cc.appspot.com",
+            messagingSenderId: "704998087828",
+            appId: "1:704998087828:web:345c23818638fa86cde881"
+          };
+        
+          // Initialize Firebase
+          const app = firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
+        </script>
     
         <!-- Recordar contraseña -->
         <div id="formFooter">
-          <a class="underlineHover" href="#">Olvidaste la contraseña?</a>
+          <a class="underlineHover" href="./PantallaRecuperar/recuperar.html">¿Olvidaste la contraseña?</a>
         </div>
     
       </div>
     </div>
-
-
   </body>
+
 </html>
