@@ -388,12 +388,26 @@ function validarUsuario(carne) {
         if (doc.exists) {
           // Acceder a los datos del documento
           const datos = doc.data();
-          if (datos.contrasena == contra && datos.estado=="Activo") {
-            ultimaSesión(carne);
-          } 
+          if (datos.contrasena == contra ) {
+            if(datos.estado=="Activo")
+            {
+                ultimaSesión(carne);
+            }
+            else 
+            {
+                error.textContent = '¡Su usuario fue bloqueado por inactividad!';
+                if (!parrafoExistente) {
+                    contenedor.insertBefore(error, formularioExistente);
+                }
+                else
+                {
+                    parrafoExistente.textContent = error.textContent;
+                }
+            }
+           } 
           else 
           {
-            error.textContent = '¡Su usuario fue bloqueado por inactividad!';
+            error.textContent = '¡Su contraseña es erronea!';
             if (!parrafoExistente) {
                 contenedor.insertBefore(error, formularioExistente);
             }

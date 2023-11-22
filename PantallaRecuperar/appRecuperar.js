@@ -103,10 +103,12 @@ function verificarExistencia(carne, correo)
                     "</b><br>Te recomendamos cambiar esta contraseña por una más segura tan pronto como puedas.<br> Saludos, <b>MinervaConnect.<br>"
 
                 }).then(
-                  message => alert("Estado del correo"+ message)
-                );
-                //Regresamos al iniciar sesión
-                window.location.href = '../index.html';
+                    //Regresamos al iniciar sesión
+                  message =>{ 
+                    console.log("Estado del correo: "+message);
+                    window.location.href = '../index.html';
+
+                });
             } else {
                 // Seleccionado 'Cancelar'
                 console.log("Se cancelo");
