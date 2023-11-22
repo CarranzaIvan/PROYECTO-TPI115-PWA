@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.container {
+  display: flex;
+  position: relative;
+}
+.sidebar {
+  height: 100%;
+  width: 230px;
+  position: fixed;
+  padding: px 0px;
+  border-right: 1px solid #ccc;
+  background-color: #fff;
+  transition: transform 0.3s ease; /*agrega transicion para animacion suave*/
+}
+.sidebar.active {
+  transform: translateX(
+    0
+  ); /* Mostrar el sidebar cuando la clase 'active' está presente */
+  z-index: 999;
+}
+.usuPerfil {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  height: 70px;
+  background-color: #ed5656;
+}
+.usuPerfil img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+/* Estilos para el menú emergente */
+.desplegable {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px;
+}
+
+.desplegable a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 8px 0;
+}
+
+.desplegable a:hover {
+  background-color: #ddd;
+}
+/*para lista de usuario*/
+li {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+li:hover {
+  background-color: blanchedalmond;
+}
+a {
+  display: flex;
+  align-items: center;
+  
+}
+a img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+a span {
+  font-size: 20px;
+  margin-left: 10px;
+  color: #000;
+}
+/*Boton ver contactos*/
+.btnVer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.btnVer a {
+  border-radius: 50%;
+  background-color: #ed5656;
+  width: 45px;
+  height: 45px;
+  padding: 15%;
+}
+/*fin de sidebar*/
+/*estilos de nav*/
+/*hamburger en nav*/
+.menu {
+  display: none;
+  float: left;
+  margin-left: 20px;
+  padding-right: 2%;
+}
+.navChat {
+  height: 70px;
+  background-color: #ed5656;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 230px;
+  display: flex;
+  align-items: center;
+}
+.navChat img {
+  margin-left: 1%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.navChat span {
+  margin-left: 3%;
+}
+/*fin nav*/
+/*div mensajes*/
+.mensajes{
+  position: fixed;
+  top: 70px;
+  bottom: 70px;
+  left: 230px;
+  right: 0;
+  overflow-y: auto;
+  
+}
+#divMensajes{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  text-align: right; /* Alinea el texto a la derecha */
+}
+#divMensajes p{
+  background-color:#F6F6F6;
+  border-radius: 20px;
+  padding: 10px 8px;
+  margin: 1px;
+}
+.mensajes div{
+  padding: 1%;
+}
+/*contenedor input y boton envio*/
+.msmEnvio {
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 230px;
+  display: flex;
+  align-items: center;
+}
+.msmEnvio input {
+  width: 70%;
+  margin-left: 4%;
+  padding: 15px 10px;
+  border-radius: 15px;
+  outline: none;
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  font-size: medium;
+}
+.msmEnvio button {
+  margin-left: 0.5%;
+  border-radius: 50%;
+  border: none;
+  background-color: #ed5656;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.msmEnvio button:hover {
+  background-color: #e73939;
+}
+.msmEnvio button svg {
+  width: 30px;
+  height: 30px;
+  padding: 1%;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1180px) {
+  /*mueve el inpuut y el button envio en dispositivos */
+  .msmEnvio {
+    position: fixed;
+    bottom: 0;
+    height: auto;
+    padding: 2% 4%;
+  }
+
+  /*hace el input y en button envio al 100% para dispositvos */
+  .msmEnvio input {
+    width: 65%;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 760px) {
+  /*esconde el sidebar en dispositivos*/
+  .sidebar {
+    display: none;
+  }
+  .sidebar.active {
+    display: block; /* Mostrar el sidebar activo en dispositivos móviles */
+  }
+  /*hace navChat 100% para dispositivos*/
+  .navChat {
+    width: 100%;
+    left: 0;
+  }
+
+  /* icono visible para dispositivos*/
+  .menu {
+    display: block;
+  }
+  .mensajes{
+    left: 0;
+    right: 0;
+  }
+
+  /*mueve el input y button de envio en dispositivos*/
+  .msmEnvio {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    padding: 2% 4%;
+  }
+
+  /* input y button full*/
+  .msmEnvio input {
+    width: 100%;
+    margin-left: 0;
+  }
+  /* icono visible y responsive */
+  .sidebar {
+    cursor: pointer;
+  }
+  .menu:hover {
+    display: block;
+  }
+}

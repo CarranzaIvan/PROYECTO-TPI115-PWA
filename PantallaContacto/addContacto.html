@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--estilo de contactos-->
+    <link rel="stylesheet" href="../styleContactos.css" />
+    <link rel="icon" href="../Recursos/pantallaInicio-png.png" type="image/png" />
+    <title>MinervaConnect</title>    
+</head>
+<body>
+    <!--nav agregar contacto-->
+    <nav class="navCtt">
+        <a class="back">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M5 12l14 0" />
+                <path d="M5 12l6 6" />
+                <path d="M5 12l6 -6" />
+              </svg>
+        </a>
+        <div>
+            <h1>Agregar Contacto</h1>
+        </div>
+        
+      </nav>
+      <!--div de input de busqueda de contacto-->
+    <div class="contenedor">
+        <input type="text" placeholder="Usuario" class="inputS">
+        <button class="btnSearch">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-search"  viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" />
+                <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                <path d="M20.2 20.2l1.8 1.8" />
+              </svg>
+        </button>
+    </div>
+    <!--div tabla de busqueda de contacto-->
+    <div class="contenedor">
+        <table class="tblAgregar">
+            <tr>
+                <td><img src="../Recursos/perfil-b.png" alt=""></td>
+                <td>Usuario 1</td>
+                <td><Button class="btnACto">Agregar</Button></td>
+              </tr>
+        </table>
+    </div>
+    <!--script de boton de regreso-->
+    <script>
+        document.querySelector(".back").addEventListener("click", function () {
+      window.history.back();
+    });
+      </script>
+</body>
+</html>
