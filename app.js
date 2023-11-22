@@ -1,3 +1,85 @@
+//---------------------------------------------------------------------------------------------
+//SECCIÓN DE ARREGLOS DE TITULACIÓN
+let previousTitle = document.title;
+window.addEventListener('blur', ()=>
+{
+    previousTitle = document.title;
+    document.title = '¡No te vayas! ¡Vuelve!😢';
+});
+window.addEventListener('focus', ()=>
+{
+    document.title = previousTitle;
+});
+//---------------------------------------------------------------------------------------------
+
+//VERIFICAR ACTIVIDAD DE LOS USUARIOS
+window.addEventListener('load', function() {
+    //Conexión a base de datos
+    const db = firebase.firestore();
+    //Obtener fecha actual
+    const fechaActual = new Date();
+    const diasActualidad = (fechaActual.getFullYear()*365)+(fechaActual.getMonth())*30+fechaActual.getDate();
+    var diasInicio; //Almacena fecha de ultima sesión
+    var diferenciaDias; //Almacenara la diferencia de fechas
+
+    //Almacena usuarios con poca actividad
+    const carnetBloqueos = [];
+    
+    db.collection("usuarios")
+    .where("estado", "==", "Activo")
+    .get()
+    .then((activos) => {
+        activos.forEach((doc) => {
+            var usuario = doc.data();
+            diasInicio= (usuario.inicioAno*365)+(usuario.inicioMes-1)*30+usuario.inicioDia;
+            diferenciaDias = diasActualidad-diasInicio;
+            //Verifica que este en el rango de 30 días de actividad
+            if(diferenciaDias>-1 && diferenciaDias<31)
+            {
+                //No se hace nada por que cumple con los días habiles
+            }
+            else
+            {
+                //Almaceno carnets a bloquear
+                carnetBloqueos.push(doc.id);
+            }
+            
+        });
+        //Bloqueamos al listado de usuario
+        bloquearUsuario(carnetBloqueos);
+    })
+    .catch((error) => {
+        console.error("Error al obtener usuarios activos: ", error);
+    });
+});
+
+//FUNCIÓN DE BLOQUEO DE USUARIOS
+function bloquearUsuario(carnets)
+{
+    //Conexión a Base de Datos
+    const db = firebase.firestore();
+
+    //Almaceno usuarios a bloquear
+    var numeroBloqueos = carnets.length;
+
+    for (let i = 0; i < numeroBloqueos; i++) {
+        db.collection("usuarios").doc(carnets[i]).update({
+            //Actualizamos el valor de bloqueo
+            estado:"Bloqueado"
+        })
+        .then((docRef) => { 
+            firebase.auth().signOut().then(() => {
+                // Cerrar sesión correctamente
+            }).catch((error) => {
+                console.error('Error al cerrar la sesión:', error);
+            });
+        })
+        .catch((error) => {
+            console.log("Error en el registro");
+        });
+    }
+}
+
 //FUNCIÓN DE CAMBIO DE ESTRUCTURA
 function activateTab(elemento) {
     var idDelElemento = elemento.id;
@@ -115,6 +197,7 @@ function activateTab(elemento) {
 
 }
 
+//FUNCIÓN DE VALIDAR CAMPOS DE REGISTRO/INICIAR SESIÓN
 function validarCampos(boton) {
     //Campos a Validar
     //Usados para el registrar y agregar
@@ -174,11 +257,7 @@ function validarCampos(boton) {
                 const regexCorreo = /^[a-z]{2}\d{5}@ues\.edu\.sv$/;
                 if (regexCorreo.test(login)) {
                     var carne = login.substring(0, 2).toUpperCase()+ login.substring(2, 7);
-                    guardar(carne);
-                    //Esperar envio a base de datos
-                    setTimeout(function() {
-                        window.location.href = './index.html';
-                      }, 3000); 
+                    verificarExistencia(carne);
                 } 
                 else {
                     error.textContent = '¡Debe de usar su correo universitario!';
@@ -220,28 +299,81 @@ function validarCampos(boton) {
     }
 }
 
-//GUARDAR USUARIOS EN BASE DE DATOS
+//FUNCIÓN DE VERIFICACIÓN PARA NO ACTUALIZACIÓN
+function verificarExistencia(carne) {
+    //Conecto hacia la base de datos
+    const db = firebase.firestore();
+
+    //Componentes a usar en caso de error
+    var error = document.createElement('p'); 
+    error.id = 'Parrafo';
+    var parrafoExistente = document.getElementById('Parrafo');
+    var formularioExistente = document.getElementById('formulario');
+    var contenedor = formularioExistente.parentNode; 
+
+    //Setencia de recuperación de datos
+    db.collection("usuarios")
+    .doc(carne) // Obtener el documento específico por su ID
+    .get()
+    .then((doc) => {
+        if (doc.exists) {
+          // Condición de verificación de existencia de usuario
+          error.textContent = '¡Su usuario ya existe!';
+            if (!parrafoExistente) {
+            contenedor.insertBefore(error, formularioExistente);
+            }
+            else
+            {
+                parrafoExistente.textContent = error.textContent;
+            }
+        }
+        else
+        {
+            guardar(carne); //Se crea el nuevo usuario
+        }
+    })
+    .catch((falla) => {
+        guardar(carne);//Se crea el nuevo usuario
+    });
+}
+
+//FUNCIÓN DE GUARDAR USUARIOS EN BASE DE DATOS
 function guardar(carne)
 {
     const db = firebase.firestore();
+    const fechaActual = new Date();
+
     db.collection("usuarios").doc(carne).set({
         nombre: document.getElementById("nombre").value.trim(),
         apellido: document.getElementById("apellido").value.trim(),
         email: document.getElementById("login").value.trim(),
-        contrasena:document.getElementById("password").value.trim()
+        contrasena:document.getElementById("password").value.trim(),
+        inicioDia:fechaActual.getDate(),
+        inicioMes:fechaActual.getMonth()+1,
+        inicioAno:fechaActual.getFullYear(),
+        estado:"Activo"
     })
     .then((docRef) => { 
-        console.log("Registro exitoso");
+        firebase.auth().signOut().then(() => {
+            // Cerrar sesión correctamente y redirigir al usuario a otra página
+            window.location.href = './index.html';
+        }).catch((error) => {
+            console.error('Error al cerrar la sesión:', error);
+        });
     })
     .catch((error) => {
         console.log("Error en el registro");
     });
 }
 
-//VERIFICAR USUARIO
+//FUNCIÓN VERIFICAR EXISTENCIA DE USUARIO PARA INICIAR EN EL CHAT
 function validarUsuario(carne) {
     var contra = document.getElementById("password").value.trim();
+
+    //Conexión a base de datos
     const db = firebase.firestore();
+
+    //Componentes capturadores de errores
     var error = document.createElement('p'); 
     error.id = 'Parrafo';
     var parrafoExistente = document.getElementById('Parrafo');
@@ -256,12 +388,12 @@ function validarUsuario(carne) {
         if (doc.exists) {
           // Acceder a los datos del documento
           const datos = doc.data();
-          if (datos.contrasena == contra) {
-            window.location.href = './PantallasChat/chat.html';
+          if (datos.contrasena == contra && datos.estado=="Activo") {
+            ultimaSesión(carne);
           } 
           else 
           {
-            error.textContent = '¡La contraseña es erronea!';
+            error.textContent = '¡Su usuario fue bloqueado por inactividad!';
             if (!parrafoExistente) {
                 contenedor.insertBefore(error, formularioExistente);
             }
@@ -284,8 +416,7 @@ function validarUsuario(carne) {
         }
 
     })
-    .catch((error) => {
-        alert("Fallo")
+    .catch((errores) => {
         error.textContent = '¡Su usuario no existe, registrarse por favor!';
         if (!parrafoExistente) {
             contenedor.insertBefore(error, formularioExistente);
@@ -295,5 +426,37 @@ function validarUsuario(carne) {
             parrafoExistente.textContent = error.textContent;
         }
     });
+}
+
+//FUNCIÓN PARA ACTUALIZAR FECHA DE ULTIMA SESIÓN INICIADA
+function ultimaSesión(carne)
+{
+    //Conexión de base de datos
+    const db = firebase.firestore();
+
+    //Obtener la fecha actual
+    const fechaActual = new Date();
+
+
+    //Actualizamos fehca en base
+    db.collection("usuarios").doc(carne).update({
+        //Actualizamos de fecha
+        inicioDia:fechaActual.getDate(),
+        inicioMes:fechaActual.getMonth()+1,
+        inicioAno:fechaActual.getFullYear(),
+    })
+    .then((docRef) => { 
+        firebase.auth().signOut().then(() => {
+            // Cerrar sesión correctamente
+            window.location.href = './PantallasChat/chat.html';
+
+        }).catch((error) => {
+            console.error('Error al cerrar la sesión:', error);
+        });
+    })
+    .catch((error) => {
+        console.log("Error en el registro");
+    });
+
 }
   

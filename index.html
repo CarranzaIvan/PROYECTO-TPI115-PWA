@@ -11,11 +11,14 @@
 
     <!-- Logo-->
     <link rel="icon" href="./Recursos/pantallaInicio.ico" type="image/x-icon">
+    <title>MinervaConnect</title>
 
     <!-- SERVICE WORKER-->
     <script>
-        if ("serviceWorker" in navigator) {
-          window.addEventListener("load", function() {
+        if ("serviceWorker" in navigator) 
+        {
+          window.addEventListener("load", function() 
+          {
             navigator.serviceWorker
               .register("/serviceWorker.js")
               .then(res => console.log("service worker registered"))
@@ -24,7 +27,6 @@
         }
     </script>
 
-    <title>MinervaConnect</title>
     <!-- Funcionalidad-->
     <script src="app.js"></script>
   </head>

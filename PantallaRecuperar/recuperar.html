@@ -5,12 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- Logo-->
-    <link rel="icon" href="../Recursos/pantallaInicio.ico" type="image/x-icon">
-    <title>MinervaConnect</title>
+     <!-- Estilo del sitio web-->
+    <link rel="stylesheet" href="styleRecuperar.css" />
 
+     <!-- Enlace de envio de gmail-->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <!-- Logo/Pestaña-->
+    <link rel="icon" href="../Recursos/pantallaInicio.ico" type="image/x-icon">
+    <title>MinervaConnect: Recuperar usuario</title>
+
+    <!-- Funcionalidad-->
+    <script src="appRecuperar.js"></script>
   </head>
   <body>
-    Recuperar contraseñas
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tarjetero de titulos -->
+        <h1 class="active" id="contraseña">Recuperación de contraseña</h1>
+        <!-- Icono-->
+        <div class="fadeIn first">
+          <img src="../Recursos/contraseñasImagen.svg" id="icon"/>
+          <div id="contenedorTexto">
+            <p id="Adventencia">
+              <b>¡Importante aviso de seguridad!<br></b>
+
+              Estamos comprometidos con la protección de tu cuenta. Si has solicitado restablecer tu contraseña, ten en cuenta que, por razones de seguridad, la nueva contraseña será enviada únicamente a tu correo institucional registrado.
+              
+              Asegúrate de revisar tu bandeja de entrada de tu correo institucional para obtener tu nueva contraseña. Si no encuentras el correo en tu bandeja de entrada, por favor verifica la carpeta de spam.
+              
+              Gracias por tu comprensión y colaboración en mantener tu cuenta segura.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Formulario de iniciar sesión -->
+        <form id = "formulario">
+          <!-- Entrada de Usuario -->
+          <input type="text" id="correo" class="fadeIn second" name="correo" placeholder="Ingrese correo institucional">
+          <input type="button" class="fadeIn fourth" value="Recuperar contraseña" id="botonRestaurar" onclick="restaurarContraseña()">
+          <input type="button" class="fadeIn fourth" value="Cancelar" id="botonCancelar" onclick="window.location.href = '../index.html';">
+        </form>
+
+        <!-- CONEXIÓN A ENVIO DE CORREOS -->
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+        <!-- CONEXIÓN A BASE DE DATOS -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script type="module">
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+        
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+            apiKey: "AIzaSyA9VGDK9U30N0ntAz3AI5U_8LRfkoKSK6E",
+            authDomain: "minervaconnect-d49cc.firebaseapp.com",
+            databaseURL: "https://minervaconnect-d49cc-default-rtdb.firebaseio.com",
+            projectId: "minervaconnect-d49cc",
+            storageBucket: "minervaconnect-d49cc.appspot.com",
+            messagingSenderId: "704998087828",
+            appId: "1:704998087828:web:345c23818638fa86cde881"
+          };
+        
+          // Initialize Firebase
+          const app = firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
+        </script>
+    
+      </div>
+    </div>
   </body>
 </html>
