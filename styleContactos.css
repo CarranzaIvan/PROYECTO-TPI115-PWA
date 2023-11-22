@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+/*navs de vista de contacto*/
+.navCtt{
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: #ed5656;
+}
+.navCtt a{
+  border-radius: 50%;
+  margin-left: 1%;
+  border: none;
+  background-color: none;
+}
+.navCtt div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/*tabla de contacto*/
+.contenedor {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  padding-top: 2%;
+}
+.tblCtnd {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+.tblCtnd td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tblCtnd tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+.tblCtnd tr:hover {
+  background-color: #ed5656;
+}
+td img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+/*footer de contacto*/
+.ctoFooter {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.botonAgregar {
+  margin-right: 2%;
+  background-color: #ed5656;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  padding: 0.5%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.botonAgregar svg{
+  width: 35px;
+  height: 35px;
+}
+/*boton de buscar en vista de addContacto*/
+.btnSearch {
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  border: none;
+  background-color: #ed5656;
+}
+.btnSearch svg {
+  width: 40px;
+  height: 40px;
+}
+.inputS {
+  width: 70%;
+  border-radius: 10px;
+  background-color: #f6f6f6;
+  border: 2px solid #f6f6f6;
+  padding: 15px 32px;
+  text-align: center;
+  margin-right: 1%;
+  outline: none;
+}
+input[type="text"]:focus {
+  border-bottom: 2px solid #ed5656;
+}
+.inputS:placeholder {
+  color: #cccccc;
+}
+/*tabla de busquedas de contacto*/
+.tblAgregar {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+.tblAgregar td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tblAgregar tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+/*boton de agregar contacto en tabla de busqueda de contacto*/
+.btnACto {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #ed5656;
+  border-radius: 10px;
+  border: 1px solid #ed5656;
+  font-weight: bold;
+}
+.btnACto:hover {
+  background-color: #e73939;
+  box-shadow: 2px 2px 2px #db4938;
+}

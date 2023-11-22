@@ -4,13 +4,141 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+    <!--script de main-->
+    <script src="../main.js"></script>
+    <!--style del chat-->
+    <link rel="stylesheet" href="../styleSide.css">
     <!-- Logo-->
     <link rel="icon" href="../Recursos/pantallaInicio.ico" type="image/x-icon">
     <title>MinervaConnect</title>
 
   </head>
   <body>
-    Aqui esta el chat
+    <!--Aqui esta el chat-->
+    <div class="container">
+      <!--sidebar-->
+      <div class="sidebar">
+        <div class="usuPerfil">
+          <img src="../Recursos/perfil-b.png" alt="" onclick="mostrarMenu()"/>
+        </div>
+        <!-- Menú emergente oculto inicialmente -->
+        <div class="desplegable" id="desplegable">
+          <!-- Opciones del menú -->
+          <a href="#">Salir</a>
+          <!--a href="#">Opción 2</!--a>-->
+        </div>
+        <ul class="usuarios">
+          <li>
+            <a href="#"
+              ><img src="../Recursos/perfil-r.png" alt="" /><span
+                >Usuario 1</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><img src="../Recursos/perfil-r.png" alt="" /><span
+                >Usuario 2</span
+              ></a
+            >
+          </li>
+        </ul>
+        <!--button a ver contactos-->
+        <div class="btnVer">
+          <a href="../PantallaContacto/contactos.html"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-users"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="#fff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+              <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <!--fin sidebar-->
+      <!--nav-->
+      <nav class="navChat">
+        <span class="menu" onclick="toggleSidebar()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-menu-2"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="#fff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 6l16 0" />
+            <path d="M4 12l16 0" />
+            <path d="M4 18l16 0" />
+          </svg>
+        </span>
+        <img src="../Recursos/perfil-b.png" alt="" /><span>Usuario 1</span>
+      </nav>
+      <!--contenido-->
+      <main class="mensajes">
+        <div id="divMensajes"></div>
+      </main>
+      <!-- fin contenido-->
+      <!--contenedor de input y boton envio-->
+      <div class="msmEnvio">
+        <input type="text" id="inputMensaje" />
+        <button id="btnMensaje" onclick="enviarTexto()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-telegram"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="#ffffff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script>
+      const sidebar = document.querySelector(".sidebar");
+      const menuIcon = document.querySelector(".menu");
+      let sidebarActive = false;
+
+      menuIcon.addEventListener("click", function (event) {
+        if (!sidebarActive) {
+          sidebar.classList.add("active");
+          sidebarActive = true;
+          document.addEventListener("click", closeSidebarOutside);
+        } else {
+          sidebar.classList.remove("active");
+          sidebarActive = false;
+          document.removeEventListener("click", closeSidebarOutside);
+        }
+        event.stopPropagation();
+      });
+
+      function closeSidebarOutside(event) {
+        if (!sidebar.contains(event.target) && event.target !== menuIcon) {
+          sidebar.classList.remove("active");
+          sidebarActive = false;
+          document.removeEventListener("click", closeSidebarOutside);
+        }
+      }
+    </script>
   </body>
 </html>

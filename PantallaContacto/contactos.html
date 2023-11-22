@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--estilo de contactos-->
+    <link rel="stylesheet" href="../styleContactos.css" />
+    <link rel="icon" href="../Recursos/pantallaInicio-png.png" type="image/png" />
+    <title>MinervaConnect</title>
+  </head>
+  <body>
+    <div>
+      <!--div nav de contacto-->
+      <nav class="navCtt">
+        <a class="back">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 12l14 0" />
+            <path d="M5 12l6 6" />
+            <path d="M5 12l6 -6" />
+          </svg>
+        </a>
+        <div>
+          <h1>Contactos</h1>
+        </div> 
+      </nav>
+      <!--div de contenedor de tabla de contactos-->
+      <div class="contenedor">
+        <table class="tblCtnd">
+          <tr>
+            <td><img src="../Recursos/perfil-b.png" alt="" /></td>
+            <td>Usuario 1</td>
+          </tr>
+          <tr>
+            <td><img src="../Recursos/perfil-b.png" alt="" /></td>
+            <td>Usuario 2</td>
+          </tr>
+        </table>
+      </div>
+      <!--footer para boton de ir a vista de agregar contacto-->
+      <footer class="ctoFooter">
+        <a class="botonAgregar" href="../PantallaContacto/addContacto.html"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-users-plus"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="#fff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+            <path d="M3 21v-2a4 4 0 0 1 4 -4h4c.96 0 1.84 .338 2.53 .901" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            <path d="M16 19h6" />
+            <path d="M19 16v6" /></svg>
+          </a>
+      </footer>
+    </div>
+    <!--script de boton de regreso-->
+    <script>
+      document.querySelector(".back").addEventListener("click", function () {
+    window.history.back();
+  });
+    </script>
+  </body>
+</html>
