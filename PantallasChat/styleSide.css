@@ -26,18 +26,36 @@
   ); /* Mostrar el sidebar cuando la clase 'active' está presente */
   z-index: 999;
 }
-.usuPerfil {
+
+/*Boton ir a contactos*/
+#btnContacto {
+  cursor: pointer; /* Cambia el cursor a tipo 'pointer' al pasar sobre el elemento */
+}
+
+/*Contenedor de Perfil del usuario*/
+.usoPerfil {
   display: flex;
   align-items: center;
   padding-left: 15px;
   height: 70px;
   background-color: #ed5656;
 }
-.usuPerfil img {
+.usoPerfil img {
   width: 40px;
   height: 40px;
   cursor: pointer;
 }
+
+/*Parrafo de perfil*/
+#NombreUsuario {
+  text-align: center; /* Centrar el texto horizontalmente */
+  color: white; /* Cambiar el color del texto a blanco */
+  font-weight: bold; /* Poner el texto en negrita */
+  padding-left: 20px; /* Agregar relleno a la izquierda */
+  text-shadow:
+    1px 1px 3px rgb(2, 2, 3);
+}
+
 /* Estilos para el menú emergente */
 .desplegable {
   display: none;
@@ -135,18 +153,52 @@ a span {
   overflow-y: auto;
   
 }
-#divMensajes{
+
+/*---------------------------------------------------------------------------------*/
+/*CONTENEDOR DE MENSAJES ENVIADOS*/
+#divMensajesEnviados{
   display: flex;
+  max-width: 400px;
   justify-content: flex-end;
-  flex-direction: column-reverse;
-  text-align: right; /* Alinea el texto a la derecha */
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-left: auto; /* Mueve el div hacia la derecha */
 }
-#divMensajes p{
-  background-color:#F6F6F6;
+#divMensajesEnviados p{
+  background-color:rgb(209, 209, 209);
+  color: #000;
   border-radius: 20px;
   padding: 10px 8px;
   margin: 1px;
 }
+/*---------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------*/
+/*CONTENEDOR DE MENSAJES GENERALES*/
+#divMensaje{
+  display: block;
+  max-width: 400px;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-left: auto; /* Mueve el div hacia la derecha */
+}
+#divMensaje p{
+  border-radius: 20px;
+  padding: 10px 8px;
+  margin: 1px;
+}
+/*---------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------*/
+#horaActual
+{
+  text-align: right; /* Alinea el texto del párrafo a la derecha */
+  font-size: 10px;
+  margin-left: auto; /* Mueve el párrafo hacia la derecha */
+}
+/*---------------------------------------------------------------------------------*/
+
+
 .mensajes div{
   padding: 1%;
 }
@@ -205,6 +257,7 @@ a span {
     margin-left: 0;
   }
 }
+
 @media only screen and (max-width: 760px) {
   /*esconde el sidebar en dispositivos*/
   .sidebar {
@@ -219,14 +272,15 @@ a span {
     left: 0;
   }
 
-  /* icono visible para dispositivos*/
-  .menu {
-    display: block;
-  }
-  .mensajes{
-    left: 0;
-    right: 0;
-  }
+/* icono visible para dispositivos*/
+.menu {
+  display: block;
+  cursor: pointer;
+}
+.mensajes{
+  left: 0;
+  right: 0;
+}
 
   /*mueve el input y button de envio en dispositivos*/
   .msmEnvio {

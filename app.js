@@ -340,7 +340,10 @@ function verificarExistencia(carne) {
 //FUNCIÓN DE GUARDAR USUARIOS EN BASE DE DATOS
 function guardar(carne)
 {
+    //Conexión de base de datos
     const db = firebase.firestore();
+
+    //Obtenemos fecha actual
     const fechaActual = new Date();
 
     db.collection("usuarios").doc(carne).set({
@@ -354,12 +357,18 @@ function guardar(carne)
         estado:"Activo"
     })
     .then((docRef) => { 
-        firebase.auth().signOut().then(() => {
-            // Cerrar sesión correctamente y redirigir al usuario a otra página
-            window.location.href = './index.html';
-        }).catch((error) => {
-            console.error('Error al cerrar la sesión:', error);
-        });
+        //Creamos la lista de amigo
+        db.collection("usuarios").doc(carne).collection("amigos").doc(carne).set({ 
+            //No agregamos nada más a la lista   
+        })
+        .then((docF) => {
+            firebase.auth().signOut().then(() => {
+                // Cerrar sesión correctamente y redirigir al usuario a otra página
+                window.location.href = './index.html';
+            }).catch((error) => {
+                console.error('Error al cerrar la sesión:', error);
+            });
+        })
     })
     .catch((error) => {
         console.log("Error en el registro");
@@ -462,7 +471,7 @@ function ultimaSesión(carne)
     .then((docRef) => { 
         firebase.auth().signOut().then(() => {
             // Cerrar sesión correctamente
-            window.location.href = './PantallasChat/chat.html';
+            window.location.href = './PantallasChat/chat.html?usuario='+carne;
 
         }).catch((error) => {
             console.error('Error al cerrar la sesión:', error);
