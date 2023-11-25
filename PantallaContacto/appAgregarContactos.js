@@ -71,28 +71,46 @@ function actualizarUsuarios()
                         if(amistad=="Si")
                         {
                             //Agrego a amigos
-                            // Crear un nueva fila (tr)
-                            var nuevaFila = document.createElement('tr');
+                            var nuevaFila = document.createElement('tr');// Crear un nueva fila
                             //Extraemos nombre completo
-                            nombreCompleto = usuario.nombre+" "+usuario.apellido;
-                            //Agregado de id a la fila
-                            nuevaFila.id = nombreCompleto;
-                            //Creamos las celdas de la nueva fila (td) con boton desahabilitado
-                            nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnACto" id="'+doc.id+'" onclick="agregarUsuario(this)" disabled>Agregar</button></td>';
+                            nombreCompleto = usuario.nombre+" "+usuario.apellido;//Extraemos nombre completo
+                            var foto = usuario.imagen; //Obtenemos foto
+                            nuevaFila.id = nombreCompleto;//ID nuevo a fila
+
+                            if(foto && foto!="")
+                            {
+                                //Nueva fila con foto y amigo
+                                nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnACto" id="'+doc.id+'" onclick="agregarUsuario(this)" disabled>Agregar</button></td>';
+                            }
+                            else
+                            {
+                                //Nueva fila sin foto y amigo
+                                nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnACto" id="'+doc.id+'" onclick="agregarUsuario(this)" disabled>Agregar</button></td>';
+                            }
+
                             //Agregamos a tabla la nueva fila
                             tabla.appendChild(nuevaFila);
                         }
                         else
                         {
                             //Agrego a no amigos
-                            // Crear un nueva fila (tr)
-                            var nuevaFila = document.createElement('tr');
-                            //Extraemos nombre completo
-                            nombreCompleto = usuario.nombre+" "+usuario.apellido;
+                            var nuevaFila = document.createElement('tr');// Crear un nueva fila
+                            nombreCompleto = usuario.nombre+" "+usuario.apellido;//Extraemos nombre completo
+                            var foto = usuario.imagen; //Obtenemos foto
                             //Agregado de id a la fila
                             nuevaFila.id = nombreCompleto;
-                            //Creamos las celdas de la nueva fila (td)
-                            nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnACto" id="'+doc.id+'" onclick="agregarUsuario(this)">Agregar</button></td>';
+
+                            if(foto && foto!="")
+                            {
+                                //Nueva fila con foto y no amigo
+                                nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnACto" id="'+doc.id+'" onclick="agregarUsuario(this)">Agregar</button></td>';
+                            }
+                            else
+                            {
+                                //Nueva fila sin foto y no amigo
+                                nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnACto" id="'+doc.id+'" onclick="agregarUsuario(this)">Agregar</button></td>';
+                            }
+                            
                             //Agregamos a tabla la nueva fila
                             tabla.appendChild(nuevaFila);
                         }

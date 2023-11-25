@@ -27,6 +27,24 @@
   z-index: 999;
 }
 
+/*Para encabezado de conversación*/
+#encabezadoChat span {
+  color: white; /* Aplicar color blanco */
+  font-family: 'Impact', Charcoal, sans-serif; /* Cambiar la fuente a Impact */
+  font-size: 30px; /* Cambiar el tamaño de la fuente a 20px */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agregar sombra al texto */
+}
+
+/*Para encabezado de conversación*/
+#conversacionesUsuarios span {
+  color: rgb(1, 1, 1); /* Aplicar color blanco */
+  font-size: 15px; /* Cambiar el tamaño de la fuente a 20px */
+  display: block; /* Hacer que los spans sean elementos de bloque */
+  text-align: center; /* Centrar el texto dentro de los spans */
+  
+}
+
+
 /*Boton ir a contactos*/
 #btnContacto {
   cursor: pointer; /* Cambia el cursor a tipo 'pointer' al pasar sobre el elemento */
@@ -151,7 +169,6 @@ a span {
   left: 230px;
   right: 0;
   overflow-y: auto;
-  
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -170,10 +187,8 @@ a span {
   padding: 10px 8px;
   margin: 1px;
 }
-/*---------------------------------------------------------------------------------*/
 
-/*---------------------------------------------------------------------------------*/
-/*CONTENEDOR DE MENSAJES GENERALES*/
+/*CONTENEDOR DE MENSAJES GENERALES ENVIADOS*/
 #divMensaje{
   display: block;
   max-width: 400px;
@@ -187,9 +202,7 @@ a span {
   padding: 10px 8px;
   margin: 1px;
 }
-/*---------------------------------------------------------------------------------*/
 
-/*---------------------------------------------------------------------------------*/
 #horaActual
 {
   text-align: right; /* Alinea el texto del párrafo a la derecha */
@@ -198,6 +211,49 @@ a span {
 }
 /*---------------------------------------------------------------------------------*/
 
+
+/*---------------------------------------------------------------------------------*/
+/*CONTENEDOR DE MENSAJES RECIBIDOS*/
+#divMensajesRecibidos{
+  display: flex;
+  max-width: 400px;
+  justify-content: flex-start;
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-right: auto; /* Mueve el div hacia la derecha */
+}
+#divMensajesRecibidos p{
+  background-color:rgb(251, 158, 158);
+  color: #000;
+  border-radius: 20px;
+  padding: 10px 8px;
+  margin: 1px;
+  margin-right: auto; /* Mueve el div hacia la derecha */
+}
+
+/*CONTENEDOR DE MENSAJES GENERALES RECIBIDOS*/
+#divMensajeR{
+  display: block;
+  max-width: 400px;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-right: auto; /* Mueve el div hacia la derecha */
+}
+#divMensajeR p{
+  border-radius: 20px;
+  text-align: left; /* Alinea el texto del párrafo a la derecha */
+  margin-right: auto; /* Mueve el párrafo hacia la derecha */
+  padding: 10px 8px;
+  margin: 1px;
+}
+
+#horaActualR
+{
+  text-align: left; /* Alinea el texto del párrafo a la derecha */
+  font-size: 10px;
+  margin-right: auto; /* Mueve el párrafo hacia la derecha */
+}
+/*---------------------------------------------------------------------------------*/
 
 .mensajes div{
   padding: 1%;
@@ -303,4 +359,43 @@ a span {
   .menu:hover {
     display: block;
   }
+}
+
+/*-----------------------------------------------------------------------------------------*/
+/*Modificación de la barra de desplazamiento*/
+/* Ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 10px; /* Ancho */
+}
+
+/* Estilo de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo */
+}
+
+/* Color de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color de la barra */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Cambiar el color al pasar el cursor por encima */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/*-----------------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------------*/
+#subidaImagen{
+  cursor: pointer;
+}
+/*-----------------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------------*/
+/*Edición de foto de perfil*/
+#fotoPerfil {
+  width: 45px; /* Ajusta el tamaño según sea necesario */
+  height: 45px; /* Ajusta el tamaño según sea necesario */
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  object-fit: cover; /* Mantiene la relación de aspecto y recorta la imagen si es necesario */
 }

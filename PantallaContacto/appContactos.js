@@ -72,6 +72,7 @@ function cargarUsuarios()
         //Información personal de la amistad
         var amigo = contacto.data();
         nombreCompleto = amigo.nombre+" "+amigo.apellido;
+        var foto = amigo.imagen;
 
         if(amigo.estado == "Activo")
         {
@@ -79,8 +80,18 @@ function cargarUsuarios()
           var nuevaFila = document.createElement('tr');
           //Agregado de id a la fila
           nuevaFila.id = nombreCompleto;
-          //Creamos las celdas de la nueva fila (td) con boton desahabilitado
-          nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Conversar</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+          
+          //Verificamos la existencia de la foto
+          if(foto && foto!="")
+          {
+            //Si existe la imagen y no esta vacia
+            nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Conversar</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+          }
+          else{
+            //Si no existe la imagen
+            nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Conversar</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+          }
+          
           //Agregamos a tabla la nueva fila
           tabla.appendChild(nuevaFila);
         }
