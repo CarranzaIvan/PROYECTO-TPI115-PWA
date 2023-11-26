@@ -19,12 +19,14 @@
   border-right: 1px solid #ccc;
   background-color: #fff;
   transition: transform 0.3s ease; /*agrega transicion para animacion suave*/
+  overflow-y: auto;
 }
 .sidebar.active {
   transform: translateX(
     0
   ); /* Mostrar el sidebar cuando la clase 'active' está presente */
   z-index: 999;
+  overflow-y: auto;
 }
 
 /*Para encabezado de conversación*/
@@ -117,7 +119,54 @@ a span {
   margin-left: 10px;
   color: #000;
 }
+/*boton ir a grupos*/
+.contenedorbtnArriba {
+  position: sticky;
+  top: 0; /* Fijar en la esquina superior */
+  right: 0; /* Fijar en la esquina derecha */
+  top: 80%;
+}
+
+.btnArriba {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
+  margin-top: 10px; /* Distancia desde la esquina superior */
+}
+
+.btnArriba a {
+  border-radius: 50%;
+  background-color: #ed5656; /* Color del botón */
+  color: #fff; /* Color del texto/icono */
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btnArriba a:hover {
+  background-color: #db3636; /* Color al pasar el mouse */
+}
+.mensajeh, .mensajeCto {
+  position: absolute;
+  top: 0;
+  right: 60px; /* Posición al lado del botón */
+  width: 100px; /* Ancho de la caja de texto */
+  height: 30px; /* Altura de la caja de texto */
+  display: none; /* Por defecto oculto */
+  border: 1px solid #ccc; /* Borde */
+  padding: 5px; /* Espaciado interno */
+}
 /*Boton ver contactos*/
+.contenedorbtnVer{
+  position: sticky; /* Posición absoluta para el contenedor del botón */
+  bottom: 0; /* Fijar en la esquina inferior */
+  right: 0; /* Fijar en la esquina derecha */
+  top: 100%;
+}
 .btnVer {
   position: absolute;
   bottom: 0;
@@ -131,6 +180,9 @@ a span {
   width: 45px;
   height: 45px;
   padding: 15%;
+}
+.btnVer a:hover{
+  background-color: #db3636;
 }
 /*fin de sidebar*/
 /*estilos de nav*/

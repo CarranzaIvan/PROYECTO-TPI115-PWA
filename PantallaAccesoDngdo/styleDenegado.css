@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.ctnDenegado {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  text-align: center;
+  height: 100vh;
+}
+
+.ctnleft {
+  background-color: #f1f1f1;
+  padding: 10px;
+  flex: 50%;
+  display: flex; /* Para convertir el contenedor en un flex container */
+  align-items: center; /* Para centrar verticalmente */
+  justify-content: center;/*Para centrar horizontalmente */
+}
+
+.ctnright {
+  background-color: #ed5656;
+  padding: 10px;
+  flex: 50%;
+  display: flex; /* Para convertir el contenedor en un flex container */
+  align-items: center; /* Para centrar verticalmente */
+  
+}
+.ctnright div {
+  text-align: left;
+}
+.ctnright div a {
+  font-size: 15px;
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .ctnright,
+  .ctnleft{
+    flex: 100%;
+    display: flex; /* Para convertir el contenedor en un flex container */
+    justify-content: center; /*Para centrar horizontalmente */
+  }
+  .ctnleft img{
+    width: 100%;
+  }
+  .ctnright div {
+    text-align: center;
+  }
+}

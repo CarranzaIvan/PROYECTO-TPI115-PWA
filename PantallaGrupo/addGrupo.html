@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--style grupos-->
+    <link rel="stylesheet" href="styleGrupo.css" />
+    <!--style contactos NAV-->
+    <link rel="stylesheet" href="../PantallaContacto/styleContactos.css" />
+
+    <title>AgregarGrupo</title>
+  </head>
+  <body>
+    <!--div nav de contacto-->
+    <nav class="navCtt">
+      <a class="back">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-arrow-left"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="3"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M5 12l14 0" />
+          <path d="M5 12l6 6" />
+          <path d="M5 12l6 -6" />
+        </svg>
+      </a>
+      <div>
+        <h1>Crear Grupo</h1>
+      </div>
+    </nav>
+    <!--script regreso pagina anterior-->
+    <main class="">
+      <form action="" class="formGrupo">
+        <label for="nombreGrupo">Nombre:</label>
+        <input
+          type="text"
+          id="nombreGrupo"
+          name="nombreGrupo"
+          placeholder="Escribir nombre"
+        />
+        <br />
+        Seleccione los integrantes del grupo:
+        <table class="tblCtnd">
+          <tr>
+            <td>
+              <input type="checkbox" name="" value="" class="" />
+            </td>
+            <td><img src="../Recursos/perfil-b.png" alt="" /></td>
+            <td for="">Usuario 1</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id="" value="" /></td>
+            <td><img src="../Recursos/perfil-b.png" alt="" /></td>
+            <td>Usuario 2</td>
+          </tr>
+        </table>
+        <input type="submit" value="Crear" class="btnCrearGrupo" />
+      </form>
+    </main>
+    <!--metodo para regresar a la vista de chat de grupo-->
+    <script>
+      document.querySelector(".back").addEventListener("click", function () {
+    // Redirigir a la vista de inicio
+    window.location.href = 'gruposChat.html';
+  });
+    </script>
+  </body>
+</html>

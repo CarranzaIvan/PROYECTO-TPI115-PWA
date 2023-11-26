@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.formGrupo {
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+}
+#nombreGrupo {
+  width: 70%;
+  border-radius: 10px;
+  background-color: #f6f6f6;
+  border: 2px solid #f6f6f6;
+  padding: 15px 32px;
+  margin-right: 1%;
+  outline: none;
+  margin: 2% 0;
+}
+input[type="text"]:focus {
+  border-bottom: 2px solid #ed5656;
+}
+.nombreGrupo:placeholder {
+  color: #cccccc;
+}
+/*CHECKBOX*/
+input[type='checkbox'] {
+  /* Aumenta el tamaño del elemento checkbox */
+  width: 20px;
+  height: 20px;
+
+  /* Aumenta el área de clic del elemento checkbox */
+  box-sizing: border-box; /* Asegúrate de que el padding se incluya en el ancho y alto */
+  padding: 10px; /* Aumenta el área de clic alrededor del elemento checkbox */
+  border: 2px solid #ccc; /* Color del borde */
+  background-color: #fff; /* Color de fondo */
+
+  /* Personaliza el marcador */
+  &:checked {
+    background-color: #ed5656;
+    border-color: #e61c1c;
+  }
+}
+/*style boton Crear*/
+.btnCrearGrupo {
+  padding: 10px 15px;
+  background-color: #ed5656;
+  border-radius: 8%;
+  cursor: pointer;
+  margin: 2%;
+  border: 1px solid #ed5656;
+  color: #fff;
+  font-weight: bold;
+}
+.btnCrearGrupo:hover {
+  background-color: #d84545;
+}
+/*add GRUPO*/
+.aGrupo{
+  text-decoration: none;
+  color: #000;
+}
+.grupoADD{
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  height: 70px;
+  background-color: #fff;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+.grupoADD:hover{
+  background-color: blanchedalmond;
+}
+.icoGrupoADD svg{
+  border-radius: 50%;
+  background: #ed5656;
+  width:35px;
+  height: 35px;
+
+}
+.textGrupoADD{
+  font-size: 20px;
+  margin-left: 10px;
+}
+/*GRUPO*/
+.grupo{
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  height: 70px;
+  background-color: #ed5656;
+}
+.back{
+  cursor:pointer;
+}
+.textGrupo{
+  font-size: 20px;
+  margin-left: 10px;
+}
