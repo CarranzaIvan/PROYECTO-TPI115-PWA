@@ -18,25 +18,48 @@ window.addEventListener('load', function() {
   //Obtenemos el carnet
   const params = new URLSearchParams(window.location.search);
   const carne = params.get('usuario');
-  if(carne)
+  
+  //Validar si existe el carne en el enlace
+  if(carne && carne!="")
   {
-    cargadoDePerfil();
-    obtenerConversaciones();
+    //Conexión a base de datos
+    const db = firebase.firestore();
     
-    // ENLACE DE SUBIDA DE ARCHIVOS
-    const inputImagen = document.getElementById('ficheroImagen'); //Obtener el subidor
-    const enlaceSubirImagen = document.getElementById('subidaImagen'); //Obtener el enlace
-    enlaceSubirImagen.addEventListener('click', function() {
-      inputImagen.click();
-    });
-    inputImagen.style.display = 'none'; // Ocultar el file input
-    inputImagen.addEventListener("change", subirImagen ,false);
+    //Setencia de recuperación de datos
+    db.collection("usuarios")
+    .doc(carne) // Obtener el documento específico por su ID
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        // Acceder a los datos del documento
+        cargadoDePerfil();
+        obtenerConversaciones();
+        
+        // ENLACE DE SUBIDA DE ARCHIVOS
+        const inputImagen = document.getElementById('ficheroImagen'); //Obtener el subidor
+        const enlaceSubirImagen = document.getElementById('subidaImagen'); //Obtener el enlace
+        enlaceSubirImagen.addEventListener('click', function() {
+          inputImagen.click();
+        });
+        inputImagen.style.display = 'none'; // Ocultar el file input
+        inputImagen.addEventListener("change", subirImagen ,false);
 
-    //Agregamos foto de perfil
-    cargaFotoDePerfil();
+        //Agregamos foto de perfil
+        cargaFotoDePerfil();
+      }
+      else{
+        window.location.href = '../PantallaAccesoDngdo/accesoDng.html'; //Tiramos pantalla de error
+      }
+
+    })
+    .catch((errores) => {
+      //En esta ocasión por inexistencia de usuario
+      window.location.href = '../PantallaAccesoDngdo/accesoDng.html'; //Tiramos pantalla de error
+    });
+
   }
   else{
-    console.log("Error de inexistencia");
+    window.location.href = '../PantallaAccesoDngdo/accesoDng.html'; //Tiramos pantalla de error
   }
 });
 //--------------------------------------------------------------------------------------------
