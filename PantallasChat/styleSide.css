@@ -37,6 +37,20 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agregar sombra al texto */
 }
 
+/* Media query para ajustar el tamaño del texto en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  #encabezadoChat span {
+    font-size: 20px; /* Tamaño del texto para pantallas más pequeñas */
+  }
+}
+
+/* Otras media queries según sea necesario para adaptarse a diferentes tamaños de pantalla */
+@media screen and (max-width: 480px) {
+  #encabezadoChat span {
+    font-size: 18px; /* Tamaño del texto para pantallas aún más pequeñas */
+  }
+}
+
 /*Para encabezado de conversación*/
 #conversacionesUsuarios span {
   color: rgb(1, 1, 1); /* Aplicar color blanco */
@@ -45,7 +59,6 @@
   text-align: center; /* Centrar el texto dentro de los spans */
   
 }
-
 
 /*Boton ir a contactos*/
 #btnContacto {
@@ -68,12 +81,11 @@
 
 /*Parrafo de perfil*/
 #NombreUsuario {
-  text-align: center; /* Centrar el texto horizontalmente */
   color: white; /* Cambiar el color del texto a blanco */
   font-weight: bold; /* Poner el texto en negrita */
-  padding-left: 20px; /* Agregar relleno a la izquierda */
+  padding-left: 15px; /* Agregar relleno a la izquierda */
   text-shadow:
-    1px 1px 3px rgb(2, 2, 3);
+  1px 1px 3px rgb(2, 2, 3);
 }
 
 /* Estilos para el menú emergente */
@@ -225,14 +237,14 @@ a span {
 
 /*---------------------------------------------------------------------------------*/
 /*CONTENEDOR DE MENSAJES ENVIADOS*/
-#divMensajesEnviados{
+.divMensajesEnviados{
   display: flex;
   max-width: 400px;
   justify-content: flex-end;
   text-align: left; /* Alinea el texto a la derecha */
   margin-left: auto; /* Mueve el div hacia la derecha */
 }
-#divMensajesEnviados p{
+.divMensajesEnviados p{
   background-color:rgb(209, 209, 209);
   color: #000;
   border-radius: 20px;
@@ -258,7 +270,7 @@ a span {
 #horaActual
 {
   text-align: right; /* Alinea el texto del párrafo a la derecha */
-  font-size: 10px;
+  font-size: 13px;
   margin-left: auto; /* Mueve el párrafo hacia la derecha */
 }
 /*---------------------------------------------------------------------------------*/
@@ -266,14 +278,14 @@ a span {
 
 /*---------------------------------------------------------------------------------*/
 /*CONTENEDOR DE MENSAJES RECIBIDOS*/
-#divMensajesRecibidos{
+.divMensajesRecibidos{
   display: flex;
   max-width: 400px;
   justify-content: flex-start;
   text-align: left; /* Alinea el texto a la derecha */
   margin-right: auto; /* Mueve el div hacia la derecha */
 }
-#divMensajesRecibidos p{
+.divMensajesRecibidos p{
   background-color:rgb(251, 158, 158);
   color: #000;
   border-radius: 20px;
@@ -299,10 +311,15 @@ a span {
   margin: 1px;
 }
 
+#divMensajeR #FechaLadoDestinatario 
+{
+  text-align: right;
+}
+
 #horaActualR
 {
   text-align: left; /* Alinea el texto del párrafo a la derecha */
-  font-size: 10px;
+  font-size: 13px;
   margin-right: auto; /* Mueve el párrafo hacia la derecha */
 }
 /*---------------------------------------------------------------------------------*/
@@ -451,3 +468,22 @@ a span {
   border-radius: 50%; /* Hace que la imagen sea redonda */
   object-fit: cover; /* Mantiene la relación de aspecto y recorta la imagen si es necesario */
 }
+
+.sidebar {
+  outline: none; /* Eliminar cualquier contorno al enfocar */
+}
+.sidebar {
+  -webkit-tap-highlight-color: transparent; /* Para navegadores basados en WebKit, como Safari */
+}
+
+/* Estilos para la lista desplegable */
+.listaDesplegable {
+  display: none;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  position: absolute;
+  z-index: 1;
+}
+
+.puntearBasurero{cursor: pointer;}

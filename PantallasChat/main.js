@@ -15,21 +15,29 @@ window.addEventListener('focus', ()=>
 //---------------------------------------------------------------------------------------------
 //FUNCIÓN CARGADO DE INFORMACIÓN DE USUARIO
 window.addEventListener('load', function() {
-  cargadoDePerfil();
-  obtenerConversaciones();
-  
-  // ENLACE DE SUBIDA DE ARCHIVOS
-  const inputImagen = document.getElementById('ficheroImagen'); //Obtener el subidor
-  const enlaceSubirImagen = document.getElementById('subidaImagen'); //Obtener el enlace
-  enlaceSubirImagen.addEventListener('click', function() {
-    inputImagen.click();
-  });
-  inputImagen.style.display = 'none'; // Ocultar el file input
-  inputImagen.addEventListener("change", subirImagen ,false);
+  //Obtenemos el carnet
+  const params = new URLSearchParams(window.location.search);
+  const carne = params.get('usuario');
+  if(carne)
+  {
+    cargadoDePerfil();
+    obtenerConversaciones();
+    
+    // ENLACE DE SUBIDA DE ARCHIVOS
+    const inputImagen = document.getElementById('ficheroImagen'); //Obtener el subidor
+    const enlaceSubirImagen = document.getElementById('subidaImagen'); //Obtener el enlace
+    enlaceSubirImagen.addEventListener('click', function() {
+      inputImagen.click();
+    });
+    inputImagen.style.display = 'none'; // Ocultar el file input
+    inputImagen.addEventListener("change", subirImagen ,false);
 
-  //Agregamos foto de perfil
-  cargaFotoDePerfil();
-
+    //Agregamos foto de perfil
+    cargaFotoDePerfil();
+  }
+  else{
+    console.log("Error de inexistencia");
+  }
 });
 //--------------------------------------------------------------------------------------------
 
@@ -199,7 +207,7 @@ function enviarTexto() {
     contenedorEntradasMensajes.appendChild(divExterno);
     document.getElementById("inputMensaje").value="";
 
-    guardarMensaje(mensaje.textContent);//Me dirijo a subir imagen
+    guardarMensaje(mensaje.textContent);//Me dirijo a subir mensjae
 
   }
 }
@@ -374,6 +382,9 @@ function cargarConversaciones()
   //Sección de examenes
   const elementoConClase = document.querySelector('.contenidoMensajeria');
 
+  //Almacenadores de fecha pasadas
+  var diaAnterior = 0, mesAnterios = 0, anyoAnterior = 0;
+
   //Consulta extractora de mensajes
   db.collection("usuarios").doc(carne).collection("amigos").doc(destinatario).collection("chat")
   .where("estado", "==", "Disponible")
@@ -391,6 +402,9 @@ function cargarConversaciones()
       var tiempo ;
       var mensajeFinal = mensaje.mensaje;
       var propietario = mensaje.persona;
+      var diaMensaje = mensaje.dia;
+      var mesMensaje = mensaje.mes;
+      var anyoMensaje = mensaje.anyo;
 
       if(mensaje.minutoEnvio<10)
       {
@@ -409,19 +423,58 @@ function cargarConversaciones()
 
         // Obtener el contenedor donde se va a agregar el párrafo
         var nuevoDiv = document.createElement("div");
-        nuevoDiv.id ="divMensajesEnviados";
+        nuevoDiv.classList.add("divMensajesEnviados");
 
         //Div general
         var divExterno = document.createElement("div");
         divExterno.id ="divMensaje";
 
+        //Hora-Minutos a mostrar
         var hora = document.createElement("p");
         hora.id="horaActual";
-        hora.textContent= tiempo;
+        hora.textContent= tiempo+" ";
 
+        // Crear un elemento SVG
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("width", "15");
+        svg.setAttribute("height", "15");
+        svg.setAttribute("viewBox", "0 0 24 24");
+        svg.id = doc.id ;
+        svg.classList.add("puntearBasurero");
+        svg.onclick = function() {
+          eliminarMensaje(this);
+        };
+        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M 10 2 L 9 3 L 5 3 C 4.4 3 4 3.4 4 4 C 4 4.6 4.4 5 5 5 L 7 5 L 17 5 L 19 5 C 19.6 5 20 4.6 20 4 C 20 3.4 19.6 3 19 3 L 15 3 L 14 2 L 10 2 z M 5 7 L 5 20 C 5 21.1 5.9 22 7 22 L 17 22 C 18.1 22 19 21.1 19 20 L 19 7 L 5 7 z M 9 9 C 9.6 9 10 9.4 10 10 L 10 19 C 10 19.6 9.6 20 9 20 C 8.4 20 8 19.6 8 19 L 8 10 C 8 9.4 8.4 9 9 9 z M 15 9 C 15.6 9 16 9.4 16 10 L 16 19 C 16 19.6 15.6 20 15 20 C 14.4 20 14 19.6 14 19 L 14 10 C 14 9.4 14.4 9 15 9 z"); 
+        svg.appendChild(path);
+        hora.appendChild(svg);
+        
         // Obtener el elemento main con la clase "mensajes"
         var contenedorEntradasMensajes = document.querySelector(".mensajes");
-      
+
+        if(diaAnterior == diaMensaje && mesAnterios==mesMensaje && anyoAnterior==anyoMensaje)
+        {
+          //Asigno valores
+          diaAnterior = diaMensaje;
+          mesAnterios = mesMensaje; 
+          anyoAnterior = anyoMensaje;
+        }
+        else
+        {
+          // Creamos el texto mensaje
+          var fechaMensaje = document.createElement("p");
+          fechaMensaje.innerText = diaMensaje+"/"+mesMensaje+"/"+anyoMensaje;//Creo fecha
+
+          //Muestro en pantalla
+          divExterno.appendChild(fechaMensaje);
+
+          //Asigno valores nuevos
+          diaAnterior = diaMensaje;
+          mesAnterios = mesMensaje; 
+          anyoAnterior = anyoMensaje;
+        }
+
         // Agregar el elemento <p> al contenedor
         nuevoDiv.appendChild(mensaje);
         divExterno.appendChild(nuevoDiv);
@@ -437,23 +490,72 @@ function cargarConversaciones()
 
         // Obtener el contenedor donde se va a agregar el párrafo
         var nuevoDiv = document.createElement("div");
-        nuevoDiv.id ="divMensajesRecibidos";
+        nuevoDiv.classList.add("divMensajesRecibidos");
+        nuevoDiv.onclick = function() {
+          eliminarMensaje(this);
+        };
 
         //Div general
         var divExterno = document.createElement("div");
         divExterno.id ="divMensajeR";
-
+        
         var hora = document.createElement("p");
         hora.id="horaActualR";
-        hora.textContent= tiempo;
+        hora.textContent= tiempo+" ";
+
+        // Crear un elemento SVG
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("width", "15");
+        svg.setAttribute("height", "15");
+        svg.setAttribute("viewBox", "0 0 24 24");
+        svg.id = doc.id ;
+        svg.classList.add("puntearBasurero");
+        svg.onclick = function() {
+          eliminarMensaje(this);
+        };
+        var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M 10 2 L 9 3 L 5 3 C 4.4 3 4 3.4 4 4 C 4 4.6 4.4 5 5 5 L 7 5 L 17 5 L 19 5 C 19.6 5 20 4.6 20 4 C 20 3.4 19.6 3 19 3 L 15 3 L 14 2 L 10 2 z M 5 7 L 5 20 C 5 21.1 5.9 22 7 22 L 17 22 C 18.1 22 19 21.1 19 20 L 19 7 L 5 7 z M 9 9 C 9.6 9 10 9.4 10 10 L 10 19 C 10 19.6 9.6 20 9 20 C 8.4 20 8 19.6 8 19 L 8 10 C 8 9.4 8.4 9 9 9 z M 15 9 C 15.6 9 16 9.4 16 10 L 16 19 C 16 19.6 15.6 20 15 20 C 14.4 20 14 19.6 14 19 L 14 10 C 14 9.4 14.4 9 15 9 z"); 
+        svg.appendChild(path);
+        
+        // Cambiar orden
+        var contenedorFlex = document.createElement("div");
+        contenedorFlex.style.display = "flex";
+        contenedorFlex.style.alignItems = "center"; // Alinear elementos verticalmente
+        contenedorFlex.appendChild(svg); //Primero svg
+        contenedorFlex.appendChild(hora); //Segundo hora
+        
 
         // Obtener el elemento main con la clase "mensajes"
         var contenedorEntradasMensajes = document.querySelector(".mensajes");
+
+        if(diaAnterior == diaMensaje && mesAnterios==mesMensaje && anyoAnterior==anyoMensaje)
+        {
+          //Asigno valores
+          diaAnterior = diaMensaje;
+          mesAnterios = mesMensaje; 
+          anyoAnterior = anyoMensaje;
+        }
+        else
+        {
+          // Creamos el texto mensaje
+          var fechaMensaje = document.createElement("p");
+          fechaMensaje.innerText = diaMensaje+"/"+mesMensaje+"/"+anyoMensaje;//Creo fecha
+          fechaMensaje.id = "FechaLadoDestinatario"
+
+          //Muestro en pantalla
+          divExterno.appendChild(fechaMensaje);
+
+          //Asigno valores nuevos
+          diaAnterior = diaMensaje;
+          mesAnterios = mesMensaje; 
+          anyoAnterior = anyoMensaje;
+        }
       
         // Agregar el elemento <p> al contenedor
         nuevoDiv.appendChild(mensaje);
         divExterno.appendChild(nuevoDiv);
-        divExterno.appendChild(hora);
+        divExterno.appendChild(contenedorFlex);
         contenedorEntradasMensajes.appendChild(divExterno);
         elementoConClase.scrollTop = elementoConClase.scrollHeight;//Ir al final de la sección
       }
@@ -576,6 +678,50 @@ function fotoConversaciones(chat)
   if(urlImagen!=urlImagenEncabezado)
   {
     imagenEncabezado.src = urlImagen;
+  }
+}
+//--------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------
+//FUNCIÓN ELIMINAR MENSAJE
+function eliminarMensaje(mensajeEliminado) {
+  
+  //Obtenemos el carnet
+  const params = new URLSearchParams(window.location.search);
+  const carne = params.get('usuario');
+
+  // Obtener el destinatario
+  var contenedor = document.getElementById('msmEnvio');
+  var boton = contenedor.querySelector('button');
+  var destinatario = boton.id.substring(0, 7);// Obtener el ID del botón
+
+  var mensaje = mensajeEliminado.id
+
+  //Conexión a base de datos de información
+  const db = firebase.firestore();
+
+  // Mostrar un cuadro de diálogo de confirmación
+  var eliminación = confirm("¿Estás seguro de que quieres eliminar este mensaje?");
+
+  // Verificar la respuesta del usuario
+  if (eliminación) 
+  {
+    db.collection("usuarios").doc(carne).collection("amigos").doc(destinatario).collection("chat").doc(mensaje)
+    .update({ 
+      estado: "Eliminado"
+    })
+    .then((mensajeObtenido) => {
+      var elemento = document.getElementById(destinatario);
+      verConversacion(elemento); //Recargamos el chat
+    })
+    .catch((error) => {
+        console.log("No se borro el mensaje");
+    });
+    
+  } 
+  else 
+  {
+    console.log("La eliminación del mensaje ha sido cancelada.");
   }
 }
 //--------------------------------------------------------------------------------------------

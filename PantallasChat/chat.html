@@ -9,88 +9,54 @@
     <script src="./main.js"></script>
 
     <!--Estilo del chat-->
-    <link rel="stylesheet" href="./styleSide.css" />
-
+    <link rel="stylesheet" href="./styleSide.css">
+    
     <!-- Logo-->
-    <link
-      rel="icon"
-      href="../Recursos/pantallaInicio.ico"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="../Recursos/pantallaInicio.ico" type="image/x-icon">
     <title>MinervaConnect: Chat</title>
+
   </head>
   <body>
     <!--Barra alteral derecha-->
     <div class="container">
       <!--sidebar-->
       <div class="sidebar">
+
         <!--Contenedor de perfil-->
         <div class="usoPerfil" id="usoPerfil">
-          <img
-            id="fotoPerfil"
-            src="../Recursos/perfil-b.png"
-            alt=""
-            onclick="mostrarMenu()"
-          />
+          <img id="fotoPerfil" src="../Recursos/perfil-b.png" alt="" onclick="mostrarMenu()"/>
         </div>
         <!-- Menú emergente oculto inicialmente -->
         <div class="desplegable" id="desplegable">
           <!-- Opciones del menú -->
           <a href="../index.html">Salir</a>
-          <input type="file" id="ficheroImagen" name="fichero" class="hidden" />
+          <input type="file" id="ficheroImagen" name="fichero" class="hidden">
           <a id="subidaImagen">Subir foto</a>
+          
         </div>
 
         <ul class="usuarios" id="conversacionesUsuarios">
-          <!--AQUI SE AGREGARAN USUARIO CON LOS QUE ESTAMOS CONVERSANDO-->
+            <!--AQUI SE AGREGARAN USUARIO CON LOS QUE ESTAMOS CONVERSANDO-->
         </ul>
-        <!--Boton ver grupos-->
-        <div class="contenedorbtnArriba">
-          <div class="btnArriba">
-            <a href="../PantallaGrupo/gruposChat.html" onmouseover="mostrarMensaje()"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-users-group"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#ffffff"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                <path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg></a>
-          </div>
-          <input type="text" id="mensajeh" class="mensajeh" readonly />
-        </div>
 
         <!--Botón ver contactos-->
-        <div class="contenedorbtnVer">
-          <div class="btnVer" id="btnContacto">
-            <a onclick="irContactos()" onmouseover="mostrarMensajeCto()">
-              <svg
-                class="icon icon-tabler icon-tabler-users"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="#fff"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-              </svg>
-            </a>
-          </div>
-          <input type="text" id="mensajeCto" class="mensajeCto" readonly />
+        <div class="btnVer" id="btnContacto">
+          <a onclick="irContactos()">
+            <svg
+              class="icon icon-tabler icon-tabler-users"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="#fff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+              <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+            </svg>
+          </a>
         </div>
       </div>
       <!--fin sidebar-->
@@ -119,7 +85,8 @@
 
       <!--Mensjeria-->
       <main class="mensajes contenidoMensajeria" id="mensajes">
-        <!--Aqui se agregan los mensajes-->
+        <!--AQUI SE AGREGAN MENSAJES-->
+        <img src="../Recursos/BienvenidaImagen.svg" id="imagenBienvenida">
       </main>
 
       <!--Boton entrada/salida-->
@@ -156,32 +123,34 @@
           document.removeEventListener("click", closeSidebarOutside);
         }
       }
-      //mouseover grupos
-      function mostrarMensaje() {
-        var mensaje = document.getElementById("mensajeh");
-        mensaje.value = "Grupos";
-        mensaje.style.display = "block";
-        mensaje.style.borderRadius="8px";
-        mensaje.style.justifyContent="center";
+
+      // AJUSTAR IMAGENES
+      function ajustarImagen() {
+        var imagen = document.getElementById('imagenBienvenida');
+        var main = document.getElementById('mensajes');
+
+        if(imagen)
+        {
+          // Obtener las medidas del main
+          var ancho = main.offsetWidth;
+          var alto = main.offsetHeight;
+
+          //Asignar medidas a imagen
+          var nuevoAncho = ancho-10; 
+          var nuevoAlto = alto-10;
+
+          //Modificar medidas a imagen
+          imagen.style.width = nuevoAncho + 'px';
+          imagen.style.height = nuevoAlto + 'px';
+        }
+        
       }
 
-      document.querySelector(".btnArriba a").onmouseout = function () {
-        var mensaje = document.getElementById("mensajeh");
-        mensaje.style.display = "none";
-      };
-      //mouseover contactos
-      function mostrarMensajeCto() {
-        var mensaje = document.getElementById("mensajeCto");
-        mensaje.value = "Contactos";
-        mensaje.style.display = "block";
-        mensaje.style.borderRadius="8px";
-        mensaje.style.justifyContent="center";
-      }
+      // Centrar la imagen inicialmente al cargar la página
+      ajustarImagen();
 
-      document.querySelector(".btnVer a").onmouseout = function () {
-        var mensaje = document.getElementById("mensajeCto");
-        mensaje.style.display = "none";
-      };
+      // Ajustar la imagen cuando se cambie el tamaño de la ventana
+      window.addEventListener('resize', ajustarImagen);
     </script>
 
     <!-- CONEXIÓN A BASE DE DATOS -->
@@ -203,7 +172,7 @@
         projectId: "minervaconnect-d49cc",
         storageBucket: "minervaconnect-d49cc.appspot.com",
         messagingSenderId: "704998087828",
-        appId: "1:704998087828:web:345c23818638fa86cde881",
+        appId: "1:704998087828:web:345c23818638fa86cde881"
       };
 
       // Initialize Firebase
