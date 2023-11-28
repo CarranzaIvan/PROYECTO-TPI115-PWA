@@ -234,3 +234,44 @@ h1 {
   background-color: #999999;
   border-color: #5a5a5a;
 }
+
+/* Otras media queries según sea necesario para adaptarse a diferentes tamaños de pantalla */
+@media (min-width: 400px) and (max-width: 425px) {
+  #tablaAmistad th {
+    font-size: 12px; /* Tamaño de fuente */
+    padding: 6px; /* Espaciado interno */
+  }
+  
+  #tablaAmistad button{
+    font-size: 10px; /* Tamaño de fuente */
+    width: 90px;
+    height: 50px;
+  }
+  
+  /* Reducir el tamaño de los datos de la tabla */
+  #tablaAmistad td {
+    font-size: 12px; /* Tamaño de fuente */
+    padding: 6px; /* Espaciado interno */
+  }
+  
+}
+/* Otras media queries según sea necesario para adaptarse a diferentes tamaños de pantalla */
+@media (min-width: 320px) and (max-width: 399px) {
+  #tablaAmistad th {
+    font-size: 12px; /* Tamaño de fuente */
+    padding: 6px; /* Espaciado interno */
+  }
+
+  #tablaAmistad button{
+    font-size: 10px; /* Tamaño de fuente */
+    width: 90px;
+    height: 50px;
+  }
+
+  /* Reducir el tamaño de los datos de la tabla */
+  #tablaAmistad td {
+    font-size: 12px; /* Tamaño de fuente */
+    padding: 6px; /* Espaciado interno */
+  }
+  
+}

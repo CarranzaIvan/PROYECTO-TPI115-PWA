@@ -91,7 +91,7 @@ function cargarUsuarios()
             if(conversacionActiva == "Si")
             {
               //Si existe la imagen y no esta vacia
-              nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Eliminar conversación</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+              nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Eliminar chat</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
             }
             else
             {
@@ -106,7 +106,7 @@ function cargarUsuarios()
             if(conversacionActiva == "Si")
             {
               //Si no existe la imagen
-              nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Eliminar Conversación</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+              nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Eliminar Chat</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
             }
             else
             {

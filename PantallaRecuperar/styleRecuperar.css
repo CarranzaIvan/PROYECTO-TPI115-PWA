@@ -230,7 +230,7 @@ input[type=text]:placeholder{
 }
 
 /* Estilos para dispositivos móviles (ancho menor a 768px, por ejemplo) */
-@media (max-width: 768px) {
+@media (max-width: 375px) {
   #botonRestaurar {
     border: none;
     padding: 16px 32px;
@@ -243,9 +243,6 @@ input[type=text]:placeholder{
     width: 210px; 
     text-align:center;
   }
-}
-
-@media (max-width: 768px) {
   #botonCancelar {
     border: none;
     padding: 16px 32px;
@@ -257,5 +254,79 @@ input[type=text]:placeholder{
     border-radius: 8px;
     width: 120px; 
     text-align:center;
+  }
+  #correo{
+    width: 220px; /* Ajusta el ancho según lo que necesites */
+    height: 40px; /* Ajusta la altura según lo que necesites */
+    font-size: 16px; /* Tamaño del texto dentro del input */
+    /* Otros estilos opcionales */
+    padding: 8px; /* Espaciado interno del input */
+    border-radius: 6px; /* Bordes redondeados */
+  }
+}
+
+
+@media (min-width: 768px){
+  #botonCancelar{
+    border: none;
+    padding: 16px 24px; /* Seleccioné uno de los tamaños de padding, puedes ajustarlo según tus necesidades */
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    /* width: 120px; */
+  }
+  #botonRestaurar {
+    border: none;
+    padding: 16px 32px;
+    padding: 16px 24px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    width: 250px; 
+    text-align:center;
+  }
+  #correo{
+    width: 550px; /* Ajusta el ancho según lo que necesites */
+    height: 40px; /* Ajusta la altura según lo que necesites */
+    font-size: 16px; /* Tamaño del texto dentro del input */
+    /* Otros estilos opcionales */
+    padding: 8px; /* Espaciado interno del input */
+    border-radius: 6px; /* Bordes redondeados */
+  }
+}
+
+@media (min-width: 400px) and (max-width: 425px) {
+  #botonCancelar{
+    border: none;
+    padding: 16px 24px; /* Seleccioné uno de los tamaños de padding, puedes ajustarlo según tus necesidades */
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    /* width: 120px; */
+  }
+  #botonRestaurar {
+    border: none;
+    padding: 16px 32px;
+    padding: 16px 24px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    width: 250px; 
+    text-align:center;
+  }
+  #correo{
+    width: 220px; /* Ajusta el ancho según lo que necesites */
+    height: 40px; /* Ajusta la altura según lo que necesites */
+    font-size: 16px; /* Tamaño del texto dentro del input */
+    /* Otros estilos opcionales */
+    padding: 8px; /* Espaciado interno del input */
+    border-radius: 6px; /* Bordes redondeados */
   }
 }
