@@ -228,3 +228,34 @@ input[type=text]:placeholder{
 * {
   box-sizing: border-box;
 }
+
+/* Estilos para dispositivos móviles (ancho menor a 768px, por ejemplo) */
+@media (max-width: 768px) {
+  #botonRestaurar {
+    border: none;
+    padding: 16px 32px;
+    padding: 16px 24px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    width: 210px; 
+    text-align:center;
+  }
+}
+
+@media (max-width: 768px) {
+  #botonCancelar {
+    border: none;
+    padding: 16px 32px;
+    padding: 16px 24px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    width: 120px; 
+    text-align:center;
+  }
+}
