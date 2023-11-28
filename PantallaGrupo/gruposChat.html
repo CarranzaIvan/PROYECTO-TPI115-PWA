@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--style chat-->
     <link rel="stylesheet" href="../PantallasChat/styleSide.css" />
     <link rel="stylesheet" href="styleGrupo.css">
-    <title>Document</title>
+
+    <!-- Logo-->
+    <link rel="icon" href="../Recursos/pantallaInicio.ico" type="image/x-icon">
+    <title>MinervaConnect: Grupos</title>
+
+    <!-- Funcionalidad-->
+    <script src="appChatGrupal.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,19 +22,24 @@
           <!--ESPACIO GRUPOS-->
           <!--DIV SEPARACION GRUPOS-->
           <div class="grupo">
-            <a class="back">
+
+            <!--FLECHA DE RETORNO-->
+            <a class="back" onclick="irRetorno()">
+              
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                   <path d="M5 12l14 0" />
                   <path d="M5 12l6 6" />
                   <path d="M5 12l6 -6" />
                 </svg>
-              </a>
-            <span class="textGrupo">Grupos</span>
+            </a>
+            
+            <span class="textGrupo" id="TituloGrupo" >Grupos</span>
           </div>
-          <!-- Div ADD GRUPO-->
+
+          <!-- Div AGREGAR GRUPO-->
           <div class="grupoADD">
-            <a class="aGrupo" href="addGrupo.html">
+            <a class="aGrupo" onclick="irAgregarGrupo()">
               <span class="icoGrupoADD">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus"  viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -39,29 +50,18 @@
               <span class="textGrupoADD">Agregar grupo</span>
             </a>
           </div>
+
           <!--LISTA DE GRUPOS-->
-          <ul class="usuarios">
-            <li>
-              <a href="#"
-                ><img src="../Recursos/grupo-r.png" alt="" /><span
-                  >Grupo 1</span
-                ></a
-              >
-            </li>
-            <li>
-              <a href="#"
-                ><img src="../Recursos/grupo-r.png" alt="" /><span
-                  >Grupo 2</span
-                ></a
-              >
-            </li>
+          <ul class="usuarios" id="conversacionesGrupales">
+            <!--AQUI CAEN LOS GRUPOS-->
           </ul>
           <!--FIN DE ESPACIO GRUPOS-->
-          <!--button a ver contactos-->
+
+          <!--VER CONTACTOS-->
           <div class="contenedorbtnVer">
             <div class="btnVer">
-              <a href="#"
-                ><svg
+              <a onclick="irContactos()" id="btnContacto">
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="icon icon-tabler icon-tabler-users"
                   viewBox="0 0 24 24"
@@ -69,8 +69,7 @@
                   stroke="#fff"
                   fill="none"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
                   <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
@@ -84,8 +83,8 @@
         <!--fin sidebar-->
         <!--nav-->
         <nav class="navChat">
-            <!--hamburguesa-->
-          <span class="menu" onclick="toggleSidebar()">
+            <!--Linea separadora-->
+            <span class="menu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon icon-tabler icon-tabler-menu-2"
@@ -96,26 +95,29 @@
               stroke="#fff"
               fill="none"
               stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+              stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M4 6l16 0" />
               <path d="M4 12l16 0" />
               <path d="M4 18l16 0" />
             </svg>
           </span>
-          <!--fin hamburguesa-->
-          <img src="../Recursos/grupo-b.png" alt="" /><span>Grupo 1</span>
+
+          <img id="chatActualImagen"/>
+          <span id="chatActualTitulo"><!-- AQUI AGREGO TITULO DE CHAT--></span>
         </nav>
+
         <!--contenido-->
-        <main class="mensajes">
-          <div id="divMensajes"></div>
+        <main class="mensajes contenidoMensajeria" id="mensajes">
+          <!--AQUI SE AGREGAN MENSAJES-->
+          <img src="../Recursos/BienvenidaGrupo.svg" id="imagenBienvenida">
         </main>
         <!-- fin contenido-->
-        <!--contenedor de input y boton envio-->
-        <div class="msmEnvio">
-          <input type="text" id="inputMensaje" />
-          <button id="btnMensaje" onclick="enviarTexto()">
+
+        <!--ENVIO DE MENSAJE SECCIÓN-->
+        <div class="msmEnvio" id="msmEnvio">
+          <input type="text" id="inputMensaje" placeholder="Ingrese su mensaje aquí..." onkeydown="controlarEnter(event)" />
+          <button class="btnMensaje" onclick="enviarMensaje(this)" >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon icon-tabler icon-tabler-brand-telegram"
@@ -132,6 +134,7 @@
           </button>
         </div>
       </div>
+      
       <script>
         //para sidebar
         const sidebar = document.querySelector(".sidebar");
@@ -158,10 +161,62 @@
             document.removeEventListener("click", closeSidebarOutside);
           }
         }
-        //regreso de pantalla
-        document.querySelector(".back").addEventListener("click", function () {
-    window.history.back();
-  });
+
+        // AJUSTAR IMAGENES
+        function ajustarImagen() {
+          var imagen = document.getElementById('imagenBienvenida');
+          var main = document.getElementById('mensajes');
+
+          if(imagen)
+          {
+            // Obtener las medidas del main
+            var ancho = main.offsetWidth;
+            var alto = main.offsetHeight;
+
+            //Asignar medidas a imagen
+            var nuevoAncho = ancho-10; 
+            var nuevoAlto = alto-10;
+
+            //Modificar medidas a imagen
+            imagen.style.width = nuevoAncho + 'px';
+            imagen.style.height = nuevoAlto + 'px';
+          }
+          
+        }
+
+        // Centrar la imagen inicialmente al cargar la página
+        ajustarImagen();
+
+        // Ajustar la imagen cuando se cambie el tamaño de la ventana
+        window.addEventListener('resize', ajustarImagen);
       </script>
+
+      <!-- CONEXIÓN A BASE DE DATOS -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyA9VGDK9U30N0ntAz3AI5U_8LRfkoKSK6E",
+        authDomain: "minervaconnect-d49cc.firebaseapp.com",
+        databaseURL: "https://minervaconnect-d49cc-default-rtdb.firebaseio.com",
+        projectId: "minervaconnect-d49cc",
+        storageBucket: "minervaconnect-d49cc.appspot.com",
+        messagingSenderId: "704998087828",
+        appId: "1:704998087828:web:345c23818638fa86cde881"
+      };
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+    </script>
 </body>
 </html>

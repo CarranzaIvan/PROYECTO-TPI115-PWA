@@ -61,7 +61,7 @@
 }
 
 /*Boton ir a contactos*/
-#btnContacto {
+#btnContacto, #btnGrupo {
   cursor: pointer; /* Cambia el cursor a tipo 'pointer' al pasar sobre el elemento */
 }
 
@@ -354,7 +354,7 @@ a span {
   background-color: #ed5656;
   width: 45px;
   height: 45px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
 }
@@ -407,27 +407,27 @@ a span {
   right: 0;
 }
 
-  /*mueve el input y button de envio en dispositivos*/
-  .msmEnvio {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: auto;
-    padding: 2% 4%;
-  }
+/*mueve el input y button de envio en dispositivos*/
+.msmEnvio {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  padding: 2% 4%;
+}
 
-  /* input y button full*/
-  .msmEnvio input {
-    width: 100%;
-    margin-left: 0;
-  }
-  /* icono visible y responsive */
-  .sidebar {
-    cursor: pointer;
-  }
-  .menu:hover {
-    display: block;
-  }
+/* input y button full*/
+.msmEnvio input {
+  width: 100%;
+  margin-left: 0;
+}
+/* icono visible y responsive */
+.sidebar {
+  cursor: pointer;
+}
+.menu:hover {
+  display: block;
+}
 }
 
 /*-----------------------------------------------------------------------------------------*/
@@ -487,3 +487,256 @@ a span {
 }
 
 .puntearBasurero{cursor: pointer;}
+
+#FechaLadoRemitente{
+  text-align: center; /* Para centrar el texto dentro del párrafo */
+  position: relative;
+  left: 43%;
+  transform: translateX(-50%);
+}
+
+#divMensaje{
+  /* Estilos del contenedor principal */
+  /* Asegúrate de que este contenedor tenga un ancho definido */
+  /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+  max-width: 100%; /* Cambia este valor según tus necesidades */
+}
+
+#divMensajeR {
+  /* Estilos del contenedor principal */
+  max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+}
+
+#FechaLadoDestinatario {
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+@media only screen and (max-width: 460px) {
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 15%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 320px) {
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 15%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 400px) {
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 0%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 768px) and (min-width: 700px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 27%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 425px) and (min-width: 400px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 25%;
+    transform: translateX(50%);
+  }
+
+}
+@media only screen and (max-width: 320px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 15%;
+    transform: translateX(50%);
+  }
+}
+
+@media only screen and (max-width: 375px) and (min-width: 321px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 20%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 1000px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 35%;
+    transform: translateX(50%);
+  }
+
+}

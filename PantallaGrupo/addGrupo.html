@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,12 +8,19 @@
     <!--style contactos NAV-->
     <link rel="stylesheet" href="../PantallaContacto/styleContactos.css" />
 
-    <title>AgregarGrupo</title>
+    <!-- Logo-->
+    <link rel="icon" href="../Recursos/pantallaInicio.ico" type="image/x-icon">
+    <title>MinervaConnect: Agregar Grupos</title>
+
+    <!-- Funcionalidad-->
+    <script src="appCrearGrupo.js"></script>
+
   </head>
   <body>
     <!--div nav de contacto-->
     <nav class="navCtt">
-      <a class="back">
+      <!--FLECHA RETORNO-->
+      <a class="back" onclick="irRetorno()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="icon icon-tabler icon-tabler-arrow-left"
@@ -24,14 +31,14 @@
           stroke="#ffffff"
           fill="none"
           stroke-linecap="round"
-          stroke-linejoin="round"
-        >
+          stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M5 12l14 0" />
           <path d="M5 12l6 6" />
           <path d="M5 12l6 -6" />
         </svg>
       </a>
+
       <div>
         <h1>Crear Grupo</h1>
       </div>
@@ -40,37 +47,49 @@
     <main class="">
       <form action="" class="formGrupo">
         <label for="nombreGrupo">Nombre:</label>
+        <!--EL NOMBRE DEL GRUPO-->
+        <div id="tooltip"><b>¡AGREGAR NOMBRE AL GRUPO!</b></div>
         <input
           type="text"
           id="nombreGrupo"
           name="nombreGrupo"
-          placeholder="Escribir nombre"
+          placeholder="Escribir nombre del grupo"
         />
         <br />
         Seleccione los integrantes del grupo:
-        <table class="tblCtnd">
+        <table class="tblCtnd" id="contactosDisponibles">
           <tr>
-            <td>
-              <input type="checkbox" name="" value="" class="" />
-            </td>
-            <td><img src="../Recursos/perfil-b.png" alt="" /></td>
-            <td for="">Usuario 1</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" name="" id="" value="" /></td>
-            <td><img src="../Recursos/perfil-b.png" alt="" /></td>
-            <td>Usuario 2</td>
+            <!--AQUÍ SE AGREGAN MIS CONTACTOS-->
           </tr>
         </table>
-        <input type="submit" value="Crear" class="btnCrearGrupo" />
+        <input type="button" id="btnCrearGrupo" value="Crear" class="btnCrearGrupo" onclick="crearGrupo()" disabled/>
       </form>
     </main>
-    <!--metodo para regresar a la vista de chat de grupo-->
-    <script>
-      document.querySelector(".back").addEventListener("click", function () {
-    // Redirigir a la vista de inicio
-    window.location.href = 'gruposChat.html';
-  });
+    
+    <!-- CONEXIÓN A BASE DE DATOS -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyA9VGDK9U30N0ntAz3AI5U_8LRfkoKSK6E",
+        authDomain: "minervaconnect-d49cc.firebaseapp.com",
+        databaseURL: "https://minervaconnect-d49cc-default-rtdb.firebaseio.com",
+        projectId: "minervaconnect-d49cc",
+        storageBucket: "minervaconnect-d49cc.appspot.com",
+        messagingSenderId: "704998087828",
+        appId: "1:704998087828:web:345c23818638fa86cde881"
+      };
+    
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
     </script>
   </body>
 </html>

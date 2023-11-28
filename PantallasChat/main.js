@@ -12,6 +12,17 @@ window.addEventListener('focus', ()=>
 });
 //---------------------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------------------
+// FUNCIÓN IR A  GRUPOS
+function irGrupos(){
+  //Obtenemos el carnet
+  const params = new URLSearchParams(window.location.search);
+  const carne = params.get('usuario');
+  //Redirigimos
+  window.location.href = '../PantallaGrupo/gruposChat.html?usuario='+carne;
+}
+//--------------------------------------------------------------------------------------------
+
 //---------------------------------------------------------------------------------------------
 //FUNCIÓN CARGADO DE INFORMACIÓN DE USUARIO
 window.addEventListener('load', function() {
@@ -244,6 +255,9 @@ function guardarMensaje(mensaje)
   const params = new URLSearchParams(window.location.search);
   const carne = params.get('usuario');
 
+  //Restablece scroll
+  const elementoConClase = document.querySelector('.contenidoMensajeria');
+
   // Obtener el botón que está dentro del div con la clase msmEnvio y el ID msmEnvio
   let boton = document.querySelector('div.msmEnvio#msmEnvio button');
   const destinatario = boton.id.slice(0, 7);
@@ -281,6 +295,7 @@ function guardarMensaje(mensaje)
       minutoEnvio: fechaActual.getMinutes(),
       segundoEnvio: fechaActual.getSeconds()
     })
+    elementoConClase.scrollTop = elementoConClase.scrollHeight;//Ir al final de la sección
   })
   .catch((error) => {
     console.error("Error al guardar el chat", error);
@@ -487,6 +502,7 @@ function cargarConversaciones()
         {
           // Creamos el texto mensaje
           var fechaMensaje = document.createElement("p");
+          fechaMensaje.id = "FechaLadoRemitente"
           fechaMensaje.innerText = diaMensaje+"/"+mesMensaje+"/"+anyoMensaje;//Creo fecha
 
           //Muestro en pantalla
@@ -548,7 +564,6 @@ function cargarConversaciones()
         contenedorFlex.appendChild(svg); //Primero svg
         contenedorFlex.appendChild(hora); //Segundo hora
         
-
         // Obtener el elemento main con la clase "mensajes"
         var contenedorEntradasMensajes = document.querySelector(".mensajes");
 

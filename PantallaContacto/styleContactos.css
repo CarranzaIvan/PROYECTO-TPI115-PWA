@@ -217,3 +217,20 @@ h1 {
     font-size: 1.5em; /* Tamaño del h1 para pantallas aún más pequeñas */
   }
 }
+
+/*TOOLTIP EN NEGRITA*/
+#tooltip {
+  display: none;
+  color: red;
+  font-weight: 700;
+}
+
+/*BOTON DESACTIVADO*/
+#btnCrearGrupo:disabled {
+  opacity: 0.5; /* Reducir la opacidad para indicar visualmente que está desactivado */
+  cursor: not-allowed; /* Cambiar el cursor a "no permitido" */
+  /* Otros estilos que desees aplicar */
+  color: #000000;
+  background-color: #999999;
+  border-color: #5a5a5a;
+}

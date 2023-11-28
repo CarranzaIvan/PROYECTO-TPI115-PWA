@@ -7,12 +7,14 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 .formGrupo {
   justify-content: center; /* Centra horizontalmente */
   align-items: center;
   justify-content: center;
   padding: 5%;
 }
+
 #nombreGrupo {
   width: 70%;
   border-radius: 10px;
@@ -23,12 +25,15 @@
   outline: none;
   margin: 2% 0;
 }
+
 input[type="text"]:focus {
   border-bottom: 2px solid #ed5656;
 }
+
 .nombreGrupo:placeholder {
   color: #cccccc;
 }
+
 /*CHECKBOX*/
 input[type='checkbox'] {
   /* Aumenta el tamaño del elemento checkbox */
@@ -47,6 +52,7 @@ input[type='checkbox'] {
     border-color: #e61c1c;
   }
 }
+
 /*style boton Crear*/
 .btnCrearGrupo {
   padding: 10px 15px;
@@ -58,14 +64,17 @@ input[type='checkbox'] {
   color: #fff;
   font-weight: bold;
 }
+
 .btnCrearGrupo:hover {
   background-color: #d84545;
 }
+
 /*add GRUPO*/
 .aGrupo{
   text-decoration: none;
   color: #000;
 }
+
 .grupoADD{
   display: flex;
   align-items: center;
@@ -75,9 +84,11 @@ input[type='checkbox'] {
   cursor: pointer;
   border-bottom: 1px solid #ccc;
 }
+
 .grupoADD:hover{
   background-color: blanchedalmond;
 }
+
 .icoGrupoADD svg{
   border-radius: 50%;
   background: #ed5656;
@@ -85,10 +96,12 @@ input[type='checkbox'] {
   height: 35px;
 
 }
+
 .textGrupoADD{
   font-size: 20px;
   margin-left: 10px;
 }
+
 /*GRUPO*/
 .grupo{
   display: flex;
@@ -97,10 +110,444 @@ input[type='checkbox'] {
   height: 70px;
   background-color: #ed5656;
 }
-.back{
+
+.back , .selector{
   cursor:pointer;
 }
 .textGrupo{
   font-size: 20px;
   margin-left: 10px;
+}
+
+/* TITULO */
+#TituloGrupo {
+  color: #fff;
+  font-size: 25px; /* Tamaño inicial del h1 */
+  font-weight: bold;
+  text-align: center;
+  text-indent: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.converGrupal{
+  cursor: pointer;
+}
+
+#chatActualTitulo{
+  color: white; /* Aplicar color blanco */
+  font-family: 'Impact', Charcoal, sans-serif; /* Cambiar la fuente a Impact */
+  font-size: 30px; /* Cambiar el tamaño de la fuente a 20px */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agregar sombra al texto */
+}
+
+/* Media query para ajustar el tamaño del texto en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  #chatActualTitulo span {
+    font-size: 20px; /* Tamaño del texto para pantallas más pequeñas */
+  }
+}
+
+/* Otras media queries según sea necesario para adaptarse a diferentes tamaños de pantalla */
+@media screen and (max-width: 480px) {
+  #chatActualTitulo span {
+    font-size: 18px; /* Tamaño del texto para pantallas aún más pequeñas */
+  }
+}
+
+#chatActualImagen, #inputMensaje, .msmEnvio button
+{
+  display: none;
+}
+
+/*---------------------------------------------------------------------------------*/
+/*CONTENEDOR DE MENSAJES ENVIADOS*/
+#divMensajesEnviados{
+  display: flex;
+  max-width: 400px;
+  justify-content: flex-end;
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-left: auto; /* Mueve el div hacia la derecha */
+}
+
+#divMensajesEnviados p{
+  background-color:rgb(209, 209, 209);
+  color: #000;
+  border-radius: 20px;
+  padding: 10px 8px;
+  margin: 1px;
+}
+
+.mensajes div{
+  padding: 1%;
+}
+
+/*CONTENEDOR DE MENSAJES GENERALES ENVIADOS*/
+#divMensaje{
+  display: block;
+  max-width: 400px;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-left: auto; /* Mueve el div hacia la derecha */
+}
+
+#divMensaje p{
+  border-radius: 20px;
+  padding: 10px 8px;
+  margin: 1px;
+}
+
+/*div mensajes*/
+.mensajes{
+  position: fixed;
+  top: 70px;
+  bottom: 70px;
+  left: 230px;
+  right: 0;
+  overflow-y: auto;
+}
+
+#horaActual
+{
+  text-align: right; /* Alinea el texto del párrafo a la derecha */
+  font-size: 13px;
+  margin-left: auto; /* Mueve el párrafo hacia la derecha */
+}
+/*---------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------*/
+/*CONTENEDOR DE MENSAJES RECIBIDOS*/
+.divMensajesRecibidos{
+  display: flex;
+  max-width: 400px;
+  justify-content: flex-start;
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-right: auto; /* Mueve el div hacia la derecha */
+}
+.divMensajesRecibidos p{
+  background-color:rgb(251, 158, 158);
+  color: #000;
+  border-radius: 20px;
+  padding: 10px 8px;
+  margin: 1px;
+  margin-right: auto; /* Mueve el div hacia la derecha */
+}
+
+/*CONTENEDOR DE MENSAJES GENERALES RECIBIDOS*/
+#divMensajeR{
+  display: block;
+  max-width: 400px;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  text-align: left; /* Alinea el texto a la derecha */
+  margin-right: auto; /* Mueve el div hacia la derecha */
+}
+#divMensajeR p{
+  border-radius: 20px;
+  text-align: left; /* Alinea el texto del párrafo a la derecha */
+  margin-right: auto; /* Mueve el párrafo hacia la derecha */
+  padding: 10px 8px;
+  margin: 1px;
+}
+
+#divMensajeR #FechaLadoDestinatario 
+{
+  text-align: right;
+}
+
+#horaActualR
+{
+  text-align: left; /* Alinea el texto del párrafo a la derecha */
+  font-size: 13px;
+  margin-right: auto; /* Mueve el párrafo hacia la derecha */
+}
+/*-----------------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------------*/
+/*Modificación de la barra de desplazamiento*/
+/* Ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 10px; /* Ancho */
+}
+
+/* Estilo de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo */
+}
+
+/* Color de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color de la barra */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Cambiar el color al pasar el cursor por encima */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/*-----------------------------------------------------------------------------------------*/
+.puntearBasurero{cursor: pointer;}/*Mouse*/
+
+#UsuarioLadoDestinatario{
+  font-weight: bold;
+}/*Nombre de grupos personas*/
+
+@media only screen and (max-width: 480px) {
+  .mensajes{
+    left: 0;
+    right: 0;
+  }
+}
+
+#FechaLadoRemitente{
+  text-align: center; /* Para centrar el texto dentro del párrafo */
+  position: relative;
+  left: 43%;
+  transform: translateX(-50%);
+}
+
+#divMensaje{
+  /* Estilos del contenedor principal */
+  /* Asegúrate de que este contenedor tenga un ancho definido */
+  /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+  max-width: 100%; /* Cambia este valor según tus necesidades */
+}
+
+#divMensajeR {
+  /* Estilos del contenedor principal */
+  max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+}
+
+#FechaLadoDestinatario {
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+@media only screen and (max-width: 460px) {
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 15%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 320px) {
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 15%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 400px) {
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 0%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 768px) and (min-width: 700px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 27%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 425px) and (min-width: 400px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 25%;
+    transform: translateX(50%);
+  }
+
+}
+@media only screen and (max-width: 320px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 15%;
+    transform: translateX(50%);
+  }
+}
+
+@media only screen and (max-width: 375px) and (min-width: 321px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 20%;
+    transform: translateX(50%);
+  }
+
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 1000px){
+  #FechaLadoRemitente{
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #divMensaje{
+    /* Estilos del contenedor principal */
+    /* Asegúrate de que este contenedor tenga un ancho definido */
+    /* Por ejemplo, puedes usar max-width o un ancho en porcentaje para que sea responsivo */
+    max-width: 100%; /* Cambia este valor según tus necesidades */
+  }
+  
+  #divMensajeR {
+    /* Estilos del contenedor principal */
+    max-width: 50%; /* Ajusta el ancho máximo según tu diseño */
+  }
+  
+  #FechaLadoDestinatario {
+    text-align: center; /* Para centrar el texto dentro del párrafo */
+    position: relative;
+    right: 35%;
+    transform: translateX(50%);
+  }
+
 }
