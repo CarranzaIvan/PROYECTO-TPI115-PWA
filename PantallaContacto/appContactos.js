@@ -64,6 +64,8 @@ function cargarUsuarios()
     {
       //Obtenemos identificador de la amistad
       var carnetAmistad = doc.id;
+      var infor = doc.data()
+      var conversacionActiva = infor.conversaron;
 
       //Extraemos los datos de la amistad
       db.collection("usuarios").doc(carnetAmistad).get()
@@ -84,12 +86,34 @@ function cargarUsuarios()
           //Verificamos la existencia de la foto
           if(foto && foto!="")
           {
-            //Si existe la imagen y no esta vacia
-            nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Conversar</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+
+            //Validar si hubo conversacion
+            if(conversacionActiva == "Si")
+            {
+              //Si existe la imagen y no esta vacia
+              nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Eliminar conversación</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+            }
+            else
+            {
+              //Si existe la imagen y no esta vacia
+              nuevaFila.innerHTML = '<td><img src="'+foto+'"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Conversar</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+            }
+            
           }
-          else{
-            //Si no existe la imagen
-            nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Conversar</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+          else
+          {
+            //Validar si hubo conversacion
+            if(conversacionActiva == "Si")
+            {
+              //Si no existe la imagen
+              nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Eliminar Conversación</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+            }
+            else
+            {
+              //Si no existe la imagen
+              nuevaFila.innerHTML = '<td><img src="../Recursos/perfil-b.png"></td><td>'+nombreCompleto+'</td><td><button class="btnConversar" id="'+doc.id+'Conversar" onclick="conversar(this)">Conversar</button></td><td><button class="btnEliminar" id="'+contacto.id+'" onclick="eliminarAmistad(this)" >Eliminar</button></td>';
+            }
+           
           }
           
           //Agregamos a tabla la nueva fila
@@ -191,16 +215,64 @@ function conversar(receptor)
   //Conexión a base de datos
   const db = firebase.firestore();
 
-  db.collection("usuarios").doc(carne).collection("amigos").doc(destinatario).update({ 
+  //Obtenemos valor del boton
+  var estadoBoton = receptor.textContent;
+  
+  //Validamos estado del boton
+  if(estadoBoton == "Conversar")
+  { 
+    db.collection("usuarios").doc(carne).collection("amigos").doc(destinatario).update({ 
       conversaron: "Si"
-  })
-  .then((amigo) => 
-  {
-    //Nos vamos al chat
-    window.location.href = '../PantallasChat/chat.html?usuario='+carne;
-  })
-  .catch((error) => {
-      console.log("No puede conversar");
-  });
+    })
+    .then((amigo) => 
+    {
+      //Nos vamos al chat
+      window.location.href = '../PantallasChat/chat.html?usuario='+carne;
+      console.log(estadoBoton)
+    })
+    .catch((error) => {
+        console.log("No puede conversar");
+    });
+
+  }
+  else
+  { 
+    var confirmacion = confirm("¿Estás seguro de querer continuar la eliminación del chat?");
+
+    //Confirma eliminación
+    if (confirmacion) 
+    {
+      // Actualizar el campo 'conversaron' del amigo
+      db.collection("usuarios").doc(carne).collection("amigos").doc(destinatario)
+      .update({ conversaron: "No" })
+      .then(() => 
+      {
+        // Obtener todas las conversaciones del chat
+        return db.collection("usuarios").doc(carne).collection("amigos").doc(destinatario)
+        .collection("chat").get();
+        
+      })
+      .then((conversaciones) => {
+        // Actualizar el estado de cada mensaje a 'Eliminado'
+        const updatePromises = [];
+        conversaciones.forEach((chat) => {
+          const updatePromise = db.collection("usuarios").doc(carne).collection("amigos")
+            .doc(destinatario).collection("chat").doc(chat.id)
+            .update({ estado: "Eliminado" });
+          updatePromises.push(updatePromise);
+        });
+        return Promise.all(updatePromises);
+      })
+      .then(() => {
+        // Después de completar todas las actualizaciones, redirigir al chat
+        window.location.href = '../PantallasChat/chat.html?usuario=' + carne;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+
+    }
+  }
 }
 

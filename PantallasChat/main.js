@@ -26,6 +26,7 @@ function irGrupos(){
 //---------------------------------------------------------------------------------------------
 //FUNCIÓN CARGADO DE INFORMACIÓN DE USUARIO
 window.addEventListener('load', function() {
+ 
   //Obtenemos el carnet
   const params = new URLSearchParams(window.location.search);
   const carne = params.get('usuario');
@@ -219,7 +220,7 @@ function enviarTexto() {
   
     // Obtener el contenedor donde se va a agregar el párrafo
     var nuevoDiv = document.createElement("div");
-    nuevoDiv.id ="divMensajesEnviados";
+    nuevoDiv.className="divMensajesEnviados";
 
     //Agregamos hora actual
     const tiempo= new Date();
@@ -763,3 +764,5 @@ function eliminarMensaje(mensajeEliminado) {
   }
 }
 //--------------------------------------------------------------------------------------------
+
+
