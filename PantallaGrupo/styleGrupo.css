@@ -299,6 +299,13 @@ input[type='checkbox'] {
   }
 }
 
+@media (max-width: 521px) and (max-height: 1024px) {
+  .mensajes {
+    left: 0;
+    right: 0;
+  }
+}
+
 #FechaLadoRemitente{
   text-align: center; /* Para centrar el texto dentro del párrafo */
   position: relative;
