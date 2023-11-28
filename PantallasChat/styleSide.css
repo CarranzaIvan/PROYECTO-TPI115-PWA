@@ -162,16 +162,7 @@ a span {
 .btnArriba a:hover {
   background-color: #db3636; /* Color al pasar el mouse */
 }
-.mensajeh, .mensajeCto {
-  position: absolute;
-  top: 0;
-  right: 60px; /* Posición al lado del botón */
-  width: 100px; /* Ancho de la caja de texto */
-  height: 30px; /* Altura de la caja de texto */
-  display: none; /* Por defecto oculto */
-  border: 1px solid #ccc; /* Borde */
-  padding: 5px; /* Espaciado interno */
-}
+
 /*Boton ver contactos*/
 .contenedorbtnVer{
   position: sticky; /* Posición absoluta para el contenedor del botón */
