@@ -147,9 +147,7 @@ function recuperarGrupos(){
 //FUNCIÓN DE OBTENER CONVERSACIÓN GRUPAL
 function verConversacionGrupal(chatGrupal){
 
-    // Limpiar el chat
-    let mainElement = document.getElementById('mensajes');
-    mainElement.innerHTML = '';
+    
 
     // Titulo del chat
     var tituloChat = document.getElementById('chatActualTitulo');

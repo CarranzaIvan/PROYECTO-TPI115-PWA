@@ -26,7 +26,10 @@ function irGrupos(){
 //---------------------------------------------------------------------------------------------
 //FUNCIÓN CARGADO DE INFORMACIÓN DE USUARIO
 window.addEventListener('load', function() {
- 
+
+  //Activamos notificaciones
+  notificar();
+
   //Obtenemos el carnet
   const params = new URLSearchParams(window.location.search);
   const carne = params.get('usuario');
@@ -242,7 +245,7 @@ function enviarTexto() {
     contenedorEntradasMensajes.appendChild(divExterno);
     document.getElementById("inputMensaje").value="";
 
-    guardarMensaje(mensaje.textContent);//Me dirijo a subir mensjae
+    guardarMensaje(mensaje.textContent);//Me dirijo a subir mensaje
 
   }
 }
@@ -297,6 +300,7 @@ function guardarMensaje(mensaje)
       segundoEnvio: fechaActual.getSeconds()
     })
     elementoConClase.scrollTop = elementoConClase.scrollHeight;//Ir al final de la sección
+    guardadoNotificacion(destinatario,carne);
   })
   .catch((error) => {
     console.error("Error al guardar el chat", error);
@@ -399,6 +403,8 @@ function verConversacion(conversacion)
   fotoConversaciones(conversacion.id);
   //Cargamos las conversación
   cargarConversaciones();
+  //Eliminamos notificaciones pendientes
+  eliminarNotificacion(conversacion.id);
   
 }
 //--------------------------------------------------------------------------------------------
@@ -407,6 +413,10 @@ function verConversacion(conversacion)
 //FUNCIÓN DE CARGADO DE CONVERSACIONES
 function cargarConversaciones()
 {
+  // Limpiar el chat
+  let mainElement = document.getElementById('mensajes');
+  mainElement.innerHTML = '';
+
   //Obtenemos el carnet
   const params = new URLSearchParams(window.location.search);
   const carne = params.get('usuario');
@@ -605,7 +615,7 @@ function cargarConversaciones()
   .catch((error) => {
     console.error("Error al mensajeria completa:", error);
   });
-
+  //recargarChat();
 }
 //--------------------------------------------------------------------------------------------
 
@@ -666,6 +676,7 @@ function subirImagen(){
   
 );
 }
+//--------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------
 //FUNCIÓN CARGA LA FOTO DE PERFIL
@@ -764,5 +775,100 @@ function eliminarMensaje(mensajeEliminado) {
   }
 }
 //--------------------------------------------------------------------------------------------
+//FUNCIÓN DE RECARGADO DE PAGINA
+function recargarChat() {
+  setTimeout(function() {
+    let navElemento = document.getElementById('encabezadoChat');
+    let boton = document.querySelector('div.msmEnvio#msmEnvio button');
+    if(navElemento && boton){
+      cargarConversaciones();// Recargar la página actual
+    }
+    
+  }, 10000);
+}
+//--------------------------------------------------------------------------------------------
+//FUNCIÓN DE GUARDADO DE NOTIFICACION
+function guardadoNotificacion(destinatario,remitente){
+  //Conexión a base de datos de información
+  const db = firebase.firestore();
+  db.collection("notificacion").doc(destinatario).collection("segmentacion").doc(remitente)
+  .get()
+  .then((notificacion) => { 
+    if(notificacion){
+      var noti = notificacion.data();
+      var numeroNotis = noti.numNotificaciones+1;
+      db.collection("notificacion").doc(destinatario).collection("segmentacion").doc(remitente)
+      .update({ 
+        numNotificaciones: numeroNotis
+      })
+    }
+  })
+  .catch((error) => {
+    db.collection("notificacion").doc(destinatario).collection("segmentacion").doc(remitente)
+    .set(
+    {
+      numNotificaciones: 1
+    })
+  });
+}
 
+function eliminarNotificacion(destinatario){
+  //Conexión a base de datos de información
+  const db = firebase.firestore();
 
+  //Obtenemos el carnet
+  const params = new URLSearchParams(window.location.search);
+  const remitente = params.get('usuario');
+
+  db.collection("notificacion").doc(remitente).collection("segmentacion").doc(destinatario)
+  .set(
+  {
+    numNotificaciones: 0
+  })
+}
+
+//--------------------------------------------------------------------------------------------
+//FUNCIÓN DE NOTIFICACION
+function notificar(){
+
+  //Obtenemos el carnet
+  const params = new URLSearchParams(window.location.search);
+  const carne = params.get('usuario');
+
+  //Conexión a base de datos de información
+  const db = firebase.firestore();
+
+  var cantidadNotificaciones = 0;
+
+  db.collection("notificacion").doc(carne).collection("segmentacion").
+  get()
+  .then((notis) => {
+    notis.forEach((notify) => {
+      var notificacion = notify.data();
+      cantidadNotificaciones = cantidadNotificaciones+notificacion.numNotificaciones;
+    })
+    if (cantidadNotificaciones == 0){
+      //Notificaciones pendientes
+      Push.create("MinervaConnect",{
+        body:"No tiene mensajes pendientes",
+        icon:"../Recursos/pantallaInicio512.png",
+        timeout: 300000,
+      });
+      
+    }
+    else{
+      //Notificaciones pendientes
+      Push.create("MinervaConnect",{
+        body:"Tiene "+cantidadNotificaciones+" mensajes pendientes",
+        icon:"../Recursos/pantallaInicio512.png",
+        timeout: 300000,
+      });
+    }
+      
+  })
+  .catch((error) => {
+    console.log("No se obtuvieron notificaciones");
+  }); 
+
+ 
+}
